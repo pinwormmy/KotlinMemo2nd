@@ -1,30 +1,30 @@
 package travelAgency.model;
 
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Scanner;
-
-import movieManager.controller.MovieController;
+import travelAgency.controller.MainController;
 
 
-public class TravelModel {
+public class TravelModel {    
     
     public static void setAdministrator(){
         
         MemberDTO administrator = new MemberDTO();
         
-        administrator.setUserNumber(MovieController.userNumberSet++);
+        administrator.setUserNumber(MainController.userNumberSet++);
         administrator.setUserId("administrator");
         administrator.setUserPassword("1111");
         administrator.setUserNickname("관리자");
         administrator.setUserLevel(2); 
         
-        MovieController.memberList.add(administrator);
-    }
+        MainController.memberList.add(administrator);        
+       
+    }    
+    
         
-    public static boolean CheckDuplicatedId(String userId, List<MemberDTO> list) {
+    public static boolean CheckDuplicatedId(String userId, List<MemberDTO> memberList) {
      
-        for (MemberDTO memberDTO : list) {
+        for (MemberDTO memberDTO : memberList) {
             if (memberDTO.getUserId().equals(userId)) {
                 return true;
             }
@@ -52,159 +52,92 @@ public class TravelModel {
         return null;
     }
     
-    public static String showMovieRating(int movieRaatingNum) {
+    public static boolean checkReserve(AirTicketDTO airTicket) {
         
-        String movieRating = "";
-        switch(movieRaatingNum){
-        case 0:
-            movieRating = "전체 이용가";
-            break;
-        case 12:
-            movieRating = "12세 이용가";
-            break;
-        case 15:
-            movieRating = "15세 이용가";
-            break;
-        case 19:
-            movieRating = "청소년 이용불가";
-            break;
-        default:
-            System.out.println("영화 등급 데이터 오류. 확인 요망");
-            break;        
+        for(AirTicketReserveDTO airReserve : MainController.airReserveList) {
+            if(airReserve.getAirTicketNumber() == airTicket.getAirTicketNumber())
+                return true;
         }
         
-        return movieRating;
-    }
- 
-    public static String translateMovieName(int movieNum) {
-        
-        String movieName="";
-        
-        for(AirlineTicketDTO movie : MovieController.movieList) {
-            if(movie.getMovieNumber() == movieNum)
-                movieName = movie.getMovieTitle();
-        }
-        
-        return movieName;
+        return false;
     }
     
-    public static String translateMemberNumToNickname(int memberNum) {
+    public static AirTicketReserveDTO checkReserve(AirTicketDTO airTicket, List<AirTicketReserveDTO> airReserveList) {
         
-        String nickName="";
+        for(AirTicketReserveDTO airReserve : airReserveList) {
+            if(airReserve.getAirTicketNumber() == airTicket.getAirTicketNumber())
+                return airReserve;
+        }
         
-        for(MemberDTO member : MovieController.memberList) {
+        return null;
+    }
+    
+    public static boolean checkReserve(RentCarDTO rentCar) {
+        
+        for(RentCarReportDTO rentCarReport : MainController.rentCarReportList) {
+            if(rentCarReport.getCarNumber() == rentCar.getCarNumber())
+                return true;
+        }
+        
+        return false;
+    }
+    
+    public static boolean checkReserve(RoomDTO room) {
+        
+        for(RoomReserveDTO roomReserve : MainController.roomReserveList) {
+            if(roomReserve.getRoomNumber() == room.getRoomNumber())
+                return true;
+        }
+        
+        return false;
+    }
+    
+    public static boolean checkMember(int memberNum) {
+        
+        for(MemberDTO member : MainController.memberList) {
             if(member.getUserNumber() == memberNum)
-                nickName = member.getUserNickname();
-        }
-        
-        return nickName;
-    }
-    
-    public static boolean searchScreenTheater(RentCarDTO theater) {
-        
-        for(HotelDTO screen : MovieController.screenList) {
-            if(screen.getTheaterNumber() == theater.getTheaterNumber())
-                return true;
-        }
-        return false;
-        
-    }
-    
-    public static boolean searchScreenTheater(int screenNum ,RentCarDTO theater) {
-        
-        for(HotelDTO screen : MovieController.screenList) {
-            if(screen.getTheaterNumber() == theater.getTheaterNumber() && screen.getScreenNumber() == screenNum)
-                return true;
-        }
-        return false;
-    }
-    
-    public static HotelDTO searchScreenTheater(int screenNum) {
-        
-        for(HotelDTO screen : MovieController.screenList) {
-            if(screen.getScreenNumber() == screenNum)
-                return screen;
-        }
-        return null;
-    }
-    
-    public static boolean searchMovieNumber(int movieNum) {
-        
-        for(AirlineTicketDTO movie : MovieController.movieList) {
-            if(movie.getMovieNumber() == movieNum)
                 return true;
         }
         
         return false;
     }
     
-    public static boolean searchAddedGrade(int movieNum) { // 로그인한 사용자가 이전에 이 영화에 평점 달았는지 확인
+    public static String translateMemberNumToNickname(int memberNum) {        
         
-        for(GradeDTO grade : MovieController.gradeList) {
-            if(grade.getMovieNumber() == movieNum && grade.getMemberNumber() == MovieController.memberDTO.getUserNumber())
-                return true;
+        for(MemberDTO member : MainController.memberList) {
+            if(member.getUserNumber() == memberNum)
+                return member.getUserNickname();
         }
-        
-        return false;
-    }
-    
-    
-    
-    public static GradeDTO searchAddedGrade(int movieNum, MemberDTO writer) { // 로그인한 사용자가 이전에 달았던 평점 내용을 반환
-        
-        for(GradeDTO grade : MovieController.gradeList) {
-            if(grade.getMovieNumber() == movieNum && grade.getMemberNumber() == MovieController.memberDTO.getUserNumber())
-                return grade;
-        }
-        
-        return null;
-    }
-    
-    public static boolean searchAddedGrade(int movieNum, int userLevel) { // 해당영화에 평점이 있는가 userLevel 나눠서 검색. 0:관람객 1:평론가
-        
-        for(GradeDTO grade : MovieController.gradeList) {
-            if(grade.getMovieNumber() == movieNum) {
-                for(MemberDTO member : MovieController.memberList) {
-                    if(grade.getMemberNumber() == member.getUserNumber() && member.getUserLevel() == userLevel)
-                        return true;
-                }
-            } 
-        }        
-        return false;
-    }   
-    
-    public static boolean checkGradeInfo(GradeDTO grade, int movieNum, int userLevel) {
-        
-        if(grade.getMovieNumber() == movieNum) {
-            for(MemberDTO member : MovieController.memberList) {
-                if(grade.getMemberNumber() == member.getUserNumber() && member.getUserLevel() == userLevel)
-                    return true;         
-            }
-        }
-        
-        return false;
-    }
-    
-    public static double movieGradeAverage(int movieNum) {
-        
-        double gradeAverage = 0;
-        int index = 0;
-        for(GradeDTO grade : MovieController.gradeList) {
             
-            if(grade.getMovieNumber() == movieNum)
-            {
-                gradeAverage += grade.getGradeScore();
-                index++;
-            }
-        }         
-        gradeAverage = (double)gradeAverage / index;        
-        
-        return gradeAverage;
+        return null;        
     }
     
+    public static AirTicketDTO translateReserveNumToAirTicket(int reserveNum) {        
+        
+        for(AirTicketDTO airTicket : MainController.airTicketList) {
+            if(airTicket.getAirTicketNumber() == reserveNum)
+                return airTicket;
+        }            
+        return null;        
+    }
     
+    public static RentCarDTO translateReportNumToRentCar(int reportNum) {        
+        
+        for(RentCarDTO rentCar : MainController.rentCarList) {
+            if(rentCar.getCarRegNumber() == reportNum)
+                return rentCar;
+        }            
+        return null;        
+    }
+
+    public static RoomDTO translateReserveNumToRoom(int reserveNum) {        
     
-    
+    for(RoomDTO room : MainController.roomList) {
+        if(room.getRoomNumber() == reserveNum)
+            return room;
+    }            
+    return null;        
+}
 }
 
 

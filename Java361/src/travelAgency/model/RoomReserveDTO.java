@@ -4,6 +4,7 @@ public class RoomReserveDTO {
     
     private int roomReserveNumber;
     private int roomNumber;
+    private int memberNumber;    
     private String startReserveDate;
     private String endReserveDate;
     
@@ -19,6 +20,12 @@ public class RoomReserveDTO {
     }
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
+    }
+    public int getMemberNumber() {
+        return memberNumber;
+    }
+    public void setMemberNumber(int memberNumber) {
+        this.memberNumber = memberNumber;
     }
     public String getStartReserveDate() {
         return startReserveDate;
