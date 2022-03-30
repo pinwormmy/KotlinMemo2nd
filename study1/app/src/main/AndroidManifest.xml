@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.WatchDic.study1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/watchdicicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/watchdicicon_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9442860103048802~7786601500"/>
+
+        <activity android:name="com.WatchDic.study1.MainActivity5">
+        </activity>
+        <activity android:name="com.WatchDic.study1.MainActivity4">
+        </activity>
+        <activity android:name="com.WatchDic.study1.MainActivity3">
+        </activity>
+        <activity android:name="com.WatchDic.study1.MainActivity2">
+        </activity>
+        <activity android:name="com.WatchDic.study1.MainActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+    </application>
+
+</manifest>

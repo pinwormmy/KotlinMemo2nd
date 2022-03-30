@@ -15,12 +15,10 @@ public class TravelModel {
         administrator.setUserId("administrator");
         administrator.setUserPassword("1111");
         administrator.setUserNickname("관리자");
-        administrator.setUserLevel(2); 
-        
+        administrator.setUserLevel(2);         
         MainController.memberList.add(administrator);        
        
-    }    
-    
+    }        
         
     public static boolean CheckDuplicatedId(String userId, List<MemberDTO> memberList) {
      
@@ -82,6 +80,15 @@ public class TravelModel {
         return false;
     }
     
+    public static RentCarReportDTO checkReserve(RentCarDTO rentCar, List<RentCarReportDTO> carReportList) {
+        
+        for(RentCarReportDTO rentCarReport : carReportList) {
+            if(rentCarReport.getCarNumber() == rentCar.getCarNumber())
+                return rentCarReport;
+        }        
+        return null;
+    }
+    
     public static boolean checkReserve(RoomDTO room) {
         
         for(RoomReserveDTO roomReserve : MainController.roomReserveList) {
@@ -90,6 +97,33 @@ public class TravelModel {
         }
         
         return false;
+    }
+    
+    public static RoomReserveDTO checkReserve(RoomDTO room, List<RoomReserveDTO> roomReserveList) {
+        
+        for(RoomReserveDTO roomReserve : MainController.roomReserveList) {
+            if(roomReserve.getRoomNumber() == room.getRoomNumber())
+                return roomReserve;
+        }        
+        return null;
+    }
+    
+    public static boolean checkRoom(int roomNumber) {
+        
+        for(RoomDTO room : MainController.roomList) {
+            if(room.getRoomNumber() == roomNumber)
+                return true;
+        }        
+        return false;
+    }
+    
+    public static RoomDTO checkRoom(List<RoomDTO> hotel, int roomNumber) {
+        
+        for(RoomDTO room : MainController.roomList) {
+            if(room.getRoomNumber() == roomNumber)
+                return room;
+        }        
+        return null;
     }
     
     public static boolean checkMember(int memberNum) {
@@ -124,7 +158,7 @@ public class TravelModel {
     public static RentCarDTO translateReportNumToRentCar(int reportNum) {        
         
         for(RentCarDTO rentCar : MainController.rentCarList) {
-            if(rentCar.getCarRegNumber() == reportNum)
+            if(rentCar.getCarNumber() == reportNum)
                 return rentCar;
         }            
         return null;        

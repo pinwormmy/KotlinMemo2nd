@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity4">
+
+    <Button
+        android:id="@+id/exitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="EventBtn4"
+        android:text="이전 화면으로"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:layout_editor_absoluteX="328dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <WebView
+        android:id="@+id/WviewLtoL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="15" />
+
+    <com.google.android.gms.ads.AdView
+
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-9442860103048802/9500311889">
+
+    </com.google.android.gms.ads.AdView>
+
+</LinearLayout>

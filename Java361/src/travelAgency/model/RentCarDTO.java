@@ -3,7 +3,7 @@ package travelAgency.model;
 public class RentCarDTO {
     
     private int carNumber;
-    private int carRegNumber;
+    private String carRegNumber;
     private String carType;
     private String carColor;
     
@@ -14,10 +14,10 @@ public class RentCarDTO {
     public void setCarNumber(int carNumber) {
         this.carNumber = carNumber;
     }
-    public int getCarRegNumber() {
+    public String getCarRegNumber() {
         return carRegNumber;
     }
-    public void setCarRegNumber(int carRegNumber) {
+    public void setCarRegNumber(String carRegNumber) {
         this.carRegNumber = carRegNumber;
     }
     public String getCarType() {

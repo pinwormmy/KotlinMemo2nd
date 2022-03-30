@@ -11,7 +11,7 @@ public class AirlineController {
         
     public static void manageAirTicket() {
         
-        while(true) {
+        while(true) { 
             
             System.out.println("");
             System.out.println("====[관리자 모드] 항공권 관리====");
@@ -112,7 +112,7 @@ public class AirlineController {
                 System.out.printf("예약번호 : %d 예약자: %s 예약일: %s \n", airReserve.getAirReserveNum(), 
                         TravelModel.translateMemberNumToNickname(airReserve.getMemberNumber()), airReserve.getRevserDate());
                 
-                int selectMenu = Util.scanInt("1.예약 취소 0.뒤로 가기");                
+                int selectMenu = Util.scanInt("1.예약 취소 0.뒤로가기");                
                 if(selectMenu == 1) {
                     cancleAirReserve(airReserve);
                 }else if(selectMenu == 0){
@@ -122,7 +122,7 @@ public class AirlineController {
                 }
                 
             }else {
-                int selectMenu = Util.scanInt("1.항공권 수정 2.항공권 삭제 3.고객 예약 0.뒤로 가기");
+                int selectMenu = Util.scanInt("1.항공권 수정 2.항공권 삭제 3.고객 예약 0.뒤로가기");
                 
                 if(selectMenu == 1) {
                     AirlineController.modifyAirTicket(airTicket);                
@@ -197,7 +197,7 @@ public class AirlineController {
             
             showAirReserveList(MainController.airReserveList);
             
-            int selectMenu = Util.scanInt("1.예약 조회 9.메인으로");
+            int selectMenu = Util.scanInt("1.예약 조회 9.뒤로가기");
             
             switch(selectMenu) {
             case 1:
@@ -317,7 +317,7 @@ public class AirlineController {
             showAirTicketList(MainController.airTicketList);
             showAirReserveListForTourist(MainController.airReserveList);
             
-            int selectMenu = Util.scanInt("1.항공권 조회 2.예약 조회 9.메인으로");
+            int selectMenu = Util.scanInt("1.항공권 조회 2.예약 조회 9.뒤로가기");
             
             switch(selectMenu) {
             case 1:
@@ -351,14 +351,14 @@ public class AirlineController {
             
             if(TravelModel.checkReserve(airTicket) == false) {
                 System.out.println("해당 항공권 예약 가능합니다.");
-                System.out.print("1.예약하기");
+                System.out.print("1.예약하기 ");
             }                
             else {
                 System.out.println("예약중인 항공권입니다.");
-                System.out.print("2.취소하기");
+                System.out.print("2.취소하기 ");
             }        
             
-            int selectMenu = Util.scanInt("0.뒤로 가기");
+            int selectMenu = Util.scanInt("0.뒤로가기");
             
             if(selectMenu == 1 && TravelModel.checkReserve(airTicket) == false) {
                 reserveAirForTourist(airTicket);            

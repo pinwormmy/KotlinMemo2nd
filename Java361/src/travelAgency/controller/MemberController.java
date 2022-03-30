@@ -80,6 +80,11 @@ public class MemberController{
             }
         }       
     }
+
+    public static void upgradeRequest() {
+        // TODO Auto-generated method stub
+        
+    }
     
     
 }

@@ -77,13 +77,13 @@ public class MainController {
             AirlineController.manageAirTicket();
             break;    
         case 2:
-            // RentCarController.manageRentCar();
+            RentCarController.manageRentCar();
             break;
         case 3:
-            // RentCarController.manageHotel();
+            HotelController.manageHotel();
             break; 
         case 7:
-            // RentCarController.manageHotel();
+            // 여행사 계정 승인
             break;      
         case 8:
             MainController.memberDTO = null;
@@ -107,10 +107,10 @@ public class MainController {
             AirlineController.manageAirTicket();
             break;    
         case 2:
-            // RentCarController.manageRentCar();
+            RentCarController.manageRentCar();
             break;
         case 3:
-            // RentCarController.manageHotel();
+            HotelController.manageHotel();
             break;          
         case 8:
             MainController.memberDTO = null;
@@ -134,13 +134,13 @@ public class MainController {
             AirlineController.manageAirTicketForTourist();
             break;    
         case 2:
-            // RentCarController.manageRentCar();
+            RentCarController.manageRentCarForTourist();
             break;
         case 3:
-            // RentCarController.manageHotel();
+            HotelController.manageHotelForTourist();
             break;  
         case 7:
-            // RentCarController.manageHotel();
+            MemberController.upgradeRequest();
             break;          
         case 8:
             MainController.memberDTO = null;

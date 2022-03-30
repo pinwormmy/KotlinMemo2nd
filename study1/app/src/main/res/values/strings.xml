@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">명품시계 백과사전</string>
+    <string name="admob_app_id">ca-app-pub-9442860103048802~7786601500</string>
+    <string name="banner_ad_unit_id">ca-app-pub-9442860103048802/9500311889</string>
+    <string name="banner_ad_unit_id_for_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="LugToLug">러그투러그</string>
+    <string name="CThickness">케이스두께</string>
+    <string name="WatchLevel">명품시계계급도</string>
+    <string name="BrandDictionary">브랜드사전</string>
+</resources>
