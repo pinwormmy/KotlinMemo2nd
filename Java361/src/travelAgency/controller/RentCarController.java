@@ -5,8 +5,9 @@ import travelAgency.model.RentCarDTO;
 import travelAgency.model.RentCarReportDTO;
 import travelAgency.model.TravelModel;
 import travelAgency.model.Util;
+import travelAgency.view.TravelView;
 
-public class RentCarController {
+public class RentCarController extends TravelView{
     
     public static void manageRentCar() {
         
@@ -40,24 +41,7 @@ public class RentCarController {
         }
     }
     
-    public static void showRentCarList(List<RentCarDTO> rentCarList) {
-        
-        System.out.println("========렌트카 목록 =========");
-        System.out.println("|관리번호|차번호판|     차종     | 색상 |");
-             
-        int index = 0;
-        for(RentCarDTO rentCar : rentCarList) {
-            if(TravelModel.checkReserve(rentCar) == false) {
-                System.out.printf("    %3d | %s | %s | %s |\n", rentCar.getCarNumber(), rentCar.getCarRegNumber(), 
-                        rentCar.getCarType(), rentCar.getCarColor());
-                index++;
-            }                
-        }
-        if(index == 0)
-            System.out.println("대여 가능한 렌트카가 없습니다.");    
-        
-        System.out.println("================================");        
-    }
+    
     
     static void selectRentCarInfo(List<RentCarDTO> rentCarList) {
         
@@ -206,22 +190,7 @@ public class RentCarController {
                 break;
         }
     }
-    
-    private static void showCarReportList(List<RentCarReportDTO> carReportList) {
         
-        System.out.println("========대여된 렌트카 목록 =========");
-        System.out.println("대여번호|차번호| 임차인 | 시작일 | 종료일 |");
-        
-        int index = 0;
-        for(RentCarReportDTO carReport : carReportList) {            
-                System.out.printf("%3d |    %s |    %s |     %s  |    $s  \n", carReport.getCarRentalNumber(), carReport.getCarNumber(), 
-                        TravelModel.translateMemberNumToNickname(carReport.getMemberNumber()), carReport.getStartRentDate(), carReport.getEndRentDate()); 
-                index++;
-        }
-        if(index == 0)
-            System.out.println("대여한 렌트카가 없습니다.");   
-        System.out.println("=================================");
-    }
     
     private static void selectCarReportInfo(List<RentCarReportDTO> carReportList) {
         
@@ -282,7 +251,7 @@ public class RentCarController {
         }
     }
     
-    private static void cancleCarReport(RentCarReportDTO carReport) {
+    public static void cancleCarReport(RentCarReportDTO carReport) {
         
         while(true) {
             String question = Util.scanString("렌트카를 반납(혹은 대여취소)하시겠습니까?(y/n)");

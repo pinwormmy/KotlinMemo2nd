@@ -2,15 +2,15 @@ package travelAgency;
 
 import travelAgency.controller.MainController;
 
-// 여행사 프로그램
+// 여행 관리 프로그램 Travel Helper!!
+
+// 관리자 계정
+// ID : administrator
+// PW : 1111
 
 public class TravelHelper {
     
-    public static void main(String[] args) {
-        
-        
-        System.out.println("========== Travel Helper =============");
-        System.out.println("===================여행예약 프로그램==");
+    public static void main(String[] args) {    
         
         MainController mainController = new MainController();
         

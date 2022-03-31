@@ -3,11 +3,12 @@ package travelAgency.controller;
 import java.util.List;
 
 import travelAgency.model.Util;
+import travelAgency.view.TravelView;
 import travelAgency.model.AirTicketDTO;
 import travelAgency.model.AirTicketReserveDTO;
 import travelAgency.model.TravelModel;
 
-public class AirlineController {
+public class AirlineController extends TravelView{
         
     public static void manageAirTicket() {
         
@@ -39,26 +40,8 @@ public class AirlineController {
             if(selectMenu == 9)
                 break;
         }
-    }
+    }    
     
-    public static void showAirTicketList(List<AirTicketDTO> airTicketList) {
-        
-        System.out.println("========항공권 목록 =========");
-        System.out.println("번호| 좌석 | 출발지 | 도착지 | 출발시간 | 도착시간 |");
-             
-        int index = 0;
-        for(AirTicketDTO airTicket : airTicketList) {
-            if(TravelModel.checkReserve(airTicket) == false) {
-                System.out.printf("%3d | %s | %s | %s | %s | %s |\n", airTicket.getAirTicketNumber(), airTicket.getSeat(), 
-                        airTicket.getStartPoint(), airTicket.getDestination(), airTicket.getStartTime(), airTicket.getArrivalTime());
-                index++;
-            }                
-        }
-        if(index == 0)
-            System.out.println("예약가능한 항공권이 없습니다.");    
-        
-        System.out.println("================================");        
-    }
     
     static void selectAirTicketInfo(List<AirTicketDTO> airTicketList) {
         
@@ -212,23 +195,8 @@ public class AirlineController {
             if(selectMenu == 9)
                 break;
         }
-    }
+    }   
     
-    private static void showAirReserveList(List<AirTicketReserveDTO> airReserveList) {
-        
-        System.out.println("========예약된 항공권 목록 =========");
-        System.out.println("번호| 항공권번호 | 예약자 | 예약일 |");
-        
-        int index = 0;
-        for(AirTicketReserveDTO airReserve : airReserveList) {            
-                System.out.printf("%3d |    %d | %s | %s |\n", airReserve.getAirReserveNum(), airReserve.getAirTicketNumber(), 
-                        TravelModel.translateMemberNumToNickname(airReserve.getMemberNumber()), airReserve.getRevserDate()); 
-                index++;
-        }
-        if(index == 0)
-            System.out.println("예약한 항공권이 없습니다.");   
-        System.out.println("=================================");
-    }
     
     private static void selectAirReserveInfo(List<AirTicketReserveDTO> airReserveList) {
         
@@ -288,7 +256,7 @@ public class AirlineController {
         }
     }
     
-    private static void cancleAirReserve(AirTicketReserveDTO airTicketReserve) {
+    public static void cancleAirReserve(AirTicketReserveDTO airTicketReserve) {
         
         while(true) {
             String question = Util.scanString("정말 해당 항공편 예약을 취소하겠습니까?(y/n)");
@@ -370,26 +338,7 @@ public class AirlineController {
                 System.out.println("입력 오류. 메뉴 숫자 확인해주세요~!");
             }
         }        
-    }
-            
-    static void showAirReserveListForTourist(List<AirTicketReserveDTO> airReserveList) {
-        
-        System.out.println("========예약된 항공권 목록 =========");
-        System.out.println("번호| 항공권번호 | 예약자 | 예약일 |");
-        
-        int index = 0;
-        for(AirTicketReserveDTO airReserve : airReserveList) {    
-                if(airReserve.getMemberNumber() == MainController.memberDTO.getUserNumber()) {
-                    System.out.printf("%3d |    %d | %s | %s |\n", airReserve.getAirReserveNum(), airReserve.getAirTicketNumber(), 
-                            TravelModel.translateMemberNumToNickname(airReserve.getMemberNumber()), airReserve.getRevserDate()); 
-                    index++;
-                }
-                
-        }
-        if(index == 0)
-            System.out.println("예약한 항공권이 없습니다.");   
-        System.out.println("=================================");
-    }
+    }          
     
     private static void reserveAirForTourist(AirTicketDTO airTicket) {
         

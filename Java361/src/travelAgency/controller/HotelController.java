@@ -3,8 +3,9 @@ package travelAgency.controller;
 import java.util.List;
 import travelAgency.model.HotelDTO;
 import travelAgency.model.Util;
+import travelAgency.view.TravelView;
 
-public class HotelController {
+public class HotelController extends TravelView{
     
     public static void manageHotel() {
         
@@ -39,17 +40,7 @@ public class HotelController {
         }
     }
     
-    public static void showHotelList(List<HotelDTO> hotelList) {
-        
-        System.out.println("========호텔 목록 =========");
-        System.out.println("|번호|     이름     |         주소         | 등급 |    연락처     |");
-             
-        for(HotelDTO hotel : hotelList) {
-            System.out.printf(" %3d |     %s |      %s      | %d성급 |    %s   \n", hotel.getHotelNumber(), hotel.getHotelName(), 
-                    hotel.getHotelLocation(), hotel.getHotelGrade(), hotel.getHotelPhoneNumber());
-        }
-        System.out.println("================================");        
-    }
+    
     
     static void selectHotelInfo(List<HotelDTO> hotelList) {
         

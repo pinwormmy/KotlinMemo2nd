@@ -12,6 +12,7 @@ import travelAgency.model.RoomDTO;
 import travelAgency.model.RoomReserveDTO;
 import travelAgency.model.TravelModel;
 import travelAgency.model.Util;
+import travelAgency.view.TravelView;
 
 
 public class MainController {
@@ -47,7 +48,8 @@ public class MainController {
         
         TravelModel.setAdministrator(); // 관리자 계정 자동생성. ID : administrator PW: 1111
         
-        System.out.println("========여행 관리 프로그램========");
+        System.out.println(TravelView.mainTitle);        
+        System.out.println(TravelView.subTitle);
         
         while(true) {          
                         
@@ -69,8 +71,8 @@ public class MainController {
     public static void MenuForAdmin() {
         
         System.out.println();
-        System.out.printf("%s님\n", MainController.memberDTO.getUserNickname());   
-        int selectMenu = Util.scanInt("관리자 로그인: 1.항공권 2.렌터카 3.호텔 7.여행사 8.로그아웃 9.종료");
+        System.out.printf(TravelView.user, MainController.memberDTO.getUserNickname());   
+        int selectMenu = Util.scanInt(TravelView.adminLogin);
         
         switch(selectMenu) {
         case 1:
@@ -83,24 +85,24 @@ public class MainController {
             HotelController.manageHotel();
             break; 
         case 7:
-            // 여행사 계정 승인
+            MemberController.upgradeToAgency();
             break;      
         case 8:
             MainController.memberDTO = null;
             break;
         case 9:
-            System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다~~~");
+            System.out.println(TravelView.exit);
             System.exit(0);
         default:
-            System.out.println("숫자 입력 오류. 메뉴에 해당하는 숫자를 입력하시오");
+            System.out.println(TravelView.checkInputNotice);
         }        
     }
     
     public static void MenuForAgency() {
         
         System.out.println();
-        System.out.printf("%s님\n", MainController.memberDTO.getUserNickname());        
-        int selectMenu = Util.scanInt("여행사 로그인: 1.항공권 관리 2.렌터카 관리 3.호텔 관리 8.로그아웃 9.종료");
+        System.out.printf(TravelView.user, MainController.memberDTO.getUserNickname());        
+        int selectMenu = Util.scanInt(TravelView.agencyLogin);
         
         switch(selectMenu) {
         case 1:
@@ -116,18 +118,18 @@ public class MainController {
             MainController.memberDTO = null;
             break;
         case 9:
-            System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다~~~");
+            System.out.println(TravelView.exit);
             System.exit(0);
         default:
-            System.out.println("숫자 입력 오류. 메뉴에 해당하는 숫자를 입력하시오");
+            System.out.println(TravelView.checkInputNotice);
         }        
     }
     
     public static void MenuForLoginTourist() {
         
         System.out.println();
-        System.out.printf("%s님\n", MainController.memberDTO.getUserNickname());
-        int selectMenu = Util.scanInt("관광객 로그인: 1.항공권 2.렌터카 3.호텔 7.여행사 신청 8.로그아웃 9.종료");
+        System.out.printf(TravelView.user, MainController.memberDTO.getUserNickname());
+        int selectMenu = Util.scanInt(TravelView.touristLogin);
         
         switch(selectMenu) {        
         case 1:
@@ -146,10 +148,10 @@ public class MainController {
             MainController.memberDTO = null;
             break;
         case 9:
-            System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다~~~");
+            System.out.println(TravelView.exit);
             System.exit(0);
         default:
-            System.out.println("숫자 입력 오류. 메뉴에 해당하는 숫자를 입력하시오");
+            System.out.println(TravelView.checkInputNotice);
         }        
     }
         
@@ -157,7 +159,7 @@ public class MainController {
     public static void MenuForGuest() {
         
         System.out.println("");
-        int selectMenu = Util.scanInt("0.로그인 1.회원가입 9.프로그램 종료");
+        int selectMenu = Util.scanInt(TravelView.guestLogin);
         
         System.out.println();
         switch(selectMenu) {
@@ -168,10 +170,10 @@ public class MainController {
             MemberController.signUp();
             break;
         case 9:
-            System.out.println("프로그램을 종료합니다. 이용해주셔서 감사합니다~~~");
+            System.out.println(TravelView.exit);
             System.exit(0);
         default:
-            System.out.println("숫자 입력 오류. 메뉴에 해당하는 숫자를 입력하쇼");
+            System.out.println(TravelView.checkInputNotice);
         }
     }
     

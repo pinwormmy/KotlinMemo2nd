@@ -2,7 +2,11 @@ package travelAgency.model;
 
 
 import java.util.List;
+
+import travelAgency.controller.AirlineController;
 import travelAgency.controller.MainController;
+import travelAgency.controller.RentCarController;
+import travelAgency.controller.RoomController;
 
 
 public class TravelModel {    
@@ -50,6 +54,17 @@ public class TravelModel {
         return null;
     }
     
+    public static MemberDTO numberToMember(int memberNum) {
+        
+        for (MemberDTO memberDTO : MainController.memberList) {
+            if (memberDTO.getUserNumber() == memberNum) {
+                return memberDTO;
+            }
+        }        
+        
+        return null;
+    }
+    
     public static boolean checkReserve(AirTicketDTO airTicket) {
         
         for(AirTicketReserveDTO airReserve : MainController.airReserveList) {
@@ -58,6 +73,26 @@ public class TravelModel {
         }
         
         return false;
+    }
+    
+    public static boolean checkLoginReserve(MemberDTO member, List<AirTicketReserveDTO> airReserveList) {
+        
+        for(AirTicketReserveDTO airReserve : airReserveList) {
+            if(airReserve.getMemberNumber() == member.getUserNumber())
+                return true;
+        }
+        
+        return false;
+    }
+    
+    public static AirTicketReserveDTO checkLoginReserve(List<AirTicketReserveDTO> airReserveList, MemberDTO member) {
+        
+        for(AirTicketReserveDTO airReserve : airReserveList) {
+            if(airReserve.getMemberNumber() == member.getUserNumber())
+                return airReserve;
+        }
+        
+        return null;
     }
     
     public static AirTicketReserveDTO checkReserve(AirTicketDTO airTicket, List<AirTicketReserveDTO> airReserveList) {
@@ -80,11 +115,49 @@ public class TravelModel {
         return false;
     }
     
+    public static boolean checkLoginReport(List<RentCarReportDTO> rentCarReportList, MemberDTO member) {
+        
+        for(RentCarReportDTO rentCarReport : rentCarReportList) {
+            if(rentCarReport.getMemberNumber() == member.getUserNumber())
+                return true;
+        }
+        
+        return false;
+    }
+    
     public static RentCarReportDTO checkReserve(RentCarDTO rentCar, List<RentCarReportDTO> carReportList) {
         
         for(RentCarReportDTO rentCarReport : carReportList) {
             if(rentCarReport.getCarNumber() == rentCar.getCarNumber())
                 return rentCarReport;
+        }        
+        return null;
+    }
+    
+    public static RentCarReportDTO checkLoginReport(MemberDTO member, List<RentCarReportDTO> carReportList) {
+        
+        for(RentCarReportDTO rentCarReport : carReportList) {
+            if(rentCarReport.getMemberNumber() == member.getUserNumber())
+                return rentCarReport;
+        }        
+        return null;
+    }
+    
+    public static boolean checkLoginRoomReserve(List<RoomReserveDTO> roomReserveList, MemberDTO member) {
+        
+        for(RoomReserveDTO roomReserve : roomReserveList) {
+            if(roomReserve.getMemberNumber() == member.getUserNumber())
+                return true;
+        }
+        
+        return false;
+    }
+    
+    public static RoomReserveDTO checkLoginRoomReserve(MemberDTO member, List<RoomReserveDTO> roomReserveList) {
+        
+        for(RoomReserveDTO roomReserve : roomReserveList) {
+            if(roomReserve.getMemberNumber() == member.getUserNumber())
+                return roomReserve;
         }        
         return null;
     }
@@ -171,7 +244,35 @@ public class TravelModel {
             return room;
     }            
     return null;        
-}
+    }
+    
+    public static void deleteAllReserve(MemberDTO memberDTO) {
+        
+        while(true) {            
+            if(TravelModel.checkLoginReserve(MainController.memberDTO, MainController.airReserveList) == false) {
+                System.out.println("항공 예약 전체 삭제 완료");
+                break;
+            }else {
+                AirlineController.cancleAirReserve(TravelModel.checkLoginReserve(MainController.airReserveList, MainController.memberDTO));
+            }
+        }   
+        while(true) {            
+            if(TravelModel.checkLoginReport(MainController.rentCarReportList, MainController.memberDTO) == false) {
+                System.out.println("렌트카 대여 전체 삭제 완료");
+                break;
+            }else {
+                RentCarController.cancleCarReport(TravelModel.checkLoginReport(MainController.memberDTO, MainController.rentCarReportList));
+            }
+        }   
+        while(true) {            
+            if(TravelModel.checkLoginRoomReserve(MainController.roomReserveList, MainController.memberDTO) == false) {
+                System.out.println("호텔 예약 전체 삭제 완료");
+                break;
+            }else {
+                RoomController.cancleRoomReserve(TravelModel.checkLoginRoomReserve(MainController.memberDTO, MainController.roomReserveList));
+            }
+        }           
+    }
 }
 
 

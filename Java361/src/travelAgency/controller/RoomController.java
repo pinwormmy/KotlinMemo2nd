@@ -8,7 +8,7 @@ import travelAgency.model.RoomReserveDTO;
 import travelAgency.model.TravelModel;
 import travelAgency.model.Util;
 
-public class RoomController extends HotelController { 
+public class RoomController extends HotelController{ 
     
     public static void showRoomList(HotelDTO hotel) {
         
@@ -67,38 +67,10 @@ public class RoomController extends HotelController {
                 System.out.println("번호 잘못 입력했습니다. 확인해주세요");
             }
         }        
-    }        
+    }            
     
-    private static void showRoomInfo(RoomDTO room) {
-        
-        while(true) {
-            
-            System.out.println("========객실 정보 조회======");
-            System.out.printf("객실번호 : %d\n", room.getRoomNumber());
-            System.out.printf("호텔번호 : %s\n", room.getHotelNumber());
-            System.out.printf("객실호수 : %s\n", room.getRoomLocation());
-            System.out.printf("가격 : %d\n", room.getRoomPrice());
-                                          
-            int selectMenu = Util.scanInt("1.객실정보 수정 2.객실정보 삭제 3.객실 예약 0.뒤로가기");
-            
-            if(selectMenu == 1) {
-                modifyRoom(room);                
-            }else if(selectMenu == 2){
-                deleteRoom(room);
-                break;
-            }else if(selectMenu == 3){
-                manageRoomReserve(room);
-                break;
-            }else if(selectMenu == 0){
-                break;
-            }else {
-                System.out.println("입력 오류. 메뉴 숫자 확인해주세요~!");
-            }
-        }
-        
-    }
     
-    private static void manageRoomReserve(RoomDTO room) {
+    public static void manageRoomReserve(RoomDTO room) {
         while(true) {
             
             System.out.println("");
@@ -129,23 +101,7 @@ public class RoomController extends HotelController {
         }
     }
 
-    private static void showRoomReserveInfo(RoomDTO room) {
-        
-        if(TravelModel.checkReserve(room) == true) {
-            
-            RoomReserveDTO roomReserve = new RoomReserveDTO();
-            roomReserve = TravelModel.checkReserve(room, MainController.roomReserveList);
-            
-            System.out.println("========객실 예약 조회======");
-            System.out.printf("예약번호 : %d\n", roomReserve.getRoomReserveNumber());
-            System.out.printf("고객명 : %s\n", TravelModel.translateMemberNumToNickname(roomReserve.getMemberNumber()));
-            System.out.printf("객실번호 : %s\n", roomReserve.getRoomNumber());
-            System.out.printf("체크인 : %s\n", roomReserve.getStartReserveDate());        
-            System.out.printf("체크아웃 : %s\n", roomReserve.getEndReserveDate());        
-        }else {
-            System.out.println("아직 객실 예약이 없습니다.");
-        }   
-    }
+    
 
     private static void addRoom(HotelDTO hotel) {
         
@@ -163,7 +119,7 @@ public class RoomController extends HotelController {
         System.out.println("새로운 객실 정보가 등록되었습니다.==========");
     }
     
-    private static void modifyRoom(RoomDTO room) {
+    public static void modifyRoom(RoomDTO room) {
         
         System.out.println("객실 정보 수정======");         
         room.setRoomLocation(Util.scanString("객실호수 (" + room.getRoomLocation() + ")"));
@@ -171,7 +127,7 @@ public class RoomController extends HotelController {
         System.out.println("객실 정보가 수정되었습니다.==========");        
     }
     
-    private static void deleteRoom(RoomDTO room) {
+    public static void deleteRoom(RoomDTO room) {
         
         while(true) {
             String question = Util.scanString("정말 해당 객실 정보를 삭제하겠습니까?(y/n)");
@@ -233,7 +189,7 @@ public class RoomController extends HotelController {
         System.out.println("=================================");
     }    
     
-    private static void cancleRoomReserve(RoomReserveDTO roomReserve) {
+    public static void cancleRoomReserve(RoomReserveDTO roomReserve) {
         
         while(true) {
             String question = Util.scanString("해당 객실을 예약취소하시겠습니까?(y/n)");
