@@ -1,5 +1,5 @@
 package com.eol.memo2nd
 
-data class Memo(val name: String)
+data class Memo(var userId: Long?, var memoContent:String, var dateTime:Long ){}
 
 
