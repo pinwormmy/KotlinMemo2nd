@@ -6,19 +6,19 @@ import com.eol.memo2nd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainBinding: ActivityMainBinding
     var toggle: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
 
-        val view = binding.root
+        val view = mainBinding.root
         setContentView(view)
 
-        binding.button.setOnClickListener {
-            if(toggle) binding.textView.text = "Bye Bye~!"
-            else binding.textView.text = "Hello World!"
+        mainBinding.button.setOnClickListener {
+            if(toggle) mainBinding.textView.text = "원래는 바인드뷰 테스트용이야"
+            else mainBinding.textView.text = "안뇽 월드~!~!"
             toggle = !toggle
         }
     }
