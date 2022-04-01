@@ -13,8 +13,20 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
     var dbHelper:DBopenHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return Holder(binding)
+
+        return Holder(binding).apply {
+            binding.deleteButton.setOnClickListener {
+
+                var cursor = adapterPosition
+
+                //강제로 null을 허용하기 위해 !! 사용
+                dbHelper?.deleteMemo(listData.get(cursor))
+                listData.remove(listData.get(cursor))
+                notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -25,6 +37,8 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
     override fun getItemCount(): Int {
         return listData.size
     }
+
+
 }
 class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root){
 

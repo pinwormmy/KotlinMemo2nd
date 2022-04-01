@@ -26,14 +26,16 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     fun insertMemo(memo:Memo){
         val values = ContentValues()
         //넘겨줄 컬럼의 매개변수 지정
-        values.put("content",memo.memoContent)
-        values.put("datetime",memo.dateTime)
+        values.put("memoContent",memo.memoContent)
+        values.put("dateTime",memo.dateTime)
         //쓰기나 수정이 가능한 데이터베이스 변수
         val wd = writableDatabase
         wd.insert("memo",null,values)
         //사용이 끝나면 반드시 close()를 사용하여 메모리누수 가 되지않도록 합시다.
         wd.close()
     }
+
+
 
 
     //select 메소드
@@ -52,7 +54,7 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
             val memoContent = cursor.getString(cursor.getColumnIndexOrThrow("memoContent"))
             val dateTime = cursor.getLong(cursor.getColumnIndexOrThrow("dateTime"))
 
-            list.add(Memo(userId,memoContent,dateTime))
+            list.add(Memo(userId, memoContent, dateTime))
         }
         cursor.close()
         rd.close()
@@ -64,8 +66,8 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     fun updateMemo(memo:Memo){
         val values = ContentValues()
 
-        values.put("content",memo.memoContent)
-        values.put("datetime",memo.dateTime)
+        values.put("memoContent",memo.memoContent)
+        values.put("dateTime",memo.dateTime)
 
         val wd = writableDatabase
         wd.update("memo",values,"userId=${memo.userId}",null)
