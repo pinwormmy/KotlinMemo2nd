@@ -43,7 +43,7 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
 class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root){
 
     fun setData(memo: Memo){
-        binding.textUserId.text = memo.userId.toString()
+        // binding.textUserId.text = memo.userId.toString() 생략해보기
         binding.textMemoContent.text = memo.memoContent
         val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
         binding.textDateTime.text = "${sdf.format(memo.dateTime)}"

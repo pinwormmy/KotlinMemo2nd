@@ -62,7 +62,7 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
         return list
     }
 
-    //update 메소드
+    //update 메소드 구현은 안했는데, 코드는ㄴ 들어있더라
     fun updateMemo(memo:Memo){
         val values = ContentValues()
 

@@ -1,5 +1,7 @@
 package com.eol.memo2nd
 
+// 여기다가 러그투러그에 구현하려고 하는 기능들 하나씩 공부하면서 적용해보고 할만큼했다 싶으면 어플 새로 만들자
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.AbsListView
@@ -10,7 +12,7 @@ import com.eol.memo2nd.databinding.ItemRecyclerBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val dbHelper = DBopenHelper(this,"Memo",null,1)
+    private val dbHelper = DBopenHelper(this,"Memo",null,1)
 
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
@@ -48,13 +50,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-/*
-    private fun refreshRecyclerView(){
-        val adapter = MemoAdapter()
-        adapter.listData = data
-        binding.recyclerView.adapter = adapter
-        // binding.recyclerView.layoutManager = LinearLayoutManager(this)
-    }
-}
-*/
+
 
