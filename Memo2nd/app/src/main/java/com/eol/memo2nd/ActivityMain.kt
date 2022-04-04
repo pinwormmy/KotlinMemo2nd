@@ -2,13 +2,11 @@ package com.eol.memo2nd
 
 // 여기다가 러그투러그에 구현하려고 하는 기능들 하나씩 공부하면서 적용해보고 할만큼했다 싶으면 어플 새로 만들자
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.AbsListView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.ActivityMainBinding
-import com.eol.memo2nd.databinding.ItemRecyclerBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,17 +15,20 @@ class MainActivity : AppCompatActivity() {
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
 
-    // RecyclerView 가 불러올 목록
-    // private val data:MutableList<Memo> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // ViewBinding
         super.onCreate(savedInstanceState)
 
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        val intent = Intent(this, display_test1::class.java)
+
 
         val view = binding.root
         setContentView(view)
+
 
         val adapter = MemoAdapter()
         adapter.listData.addAll(dbHelper.selectMemo())
@@ -48,7 +49,16 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             binding.editMemo.setText("")
         }
+
+        binding.test1Button.setOnClickListener {
+
+            startActivity(intent)
+        }
+
     }
+
+
+
 }
 
 
