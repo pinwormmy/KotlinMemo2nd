@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val intent = Intent(this, display_test1::class.java)
+        val intent = Intent(this, DisplayTest1::class.java)
 
 
         val view = binding.root

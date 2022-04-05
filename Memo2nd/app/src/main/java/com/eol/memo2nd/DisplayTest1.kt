@@ -6,20 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.eol.memo2nd.databinding.ActivityMainBinding
 import com.eol.memo2nd.databinding.Test1Binding
 
-class display_test1 : AppCompatActivity() {
+class DisplayTest1 : AppCompatActivity() {
 
     lateinit var binding2 : Test1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.test1)
         binding2 = Test1Binding.inflate(layoutInflater)
+        setContentView(binding2.root)
 
-        val intent2 = Intent(this, ActivityMainBinding::class.java)
 
         binding2.toMainButton.setOnClickListener{
 
-            startActivity(intent2)
+            finish()
         }
     }
 }
