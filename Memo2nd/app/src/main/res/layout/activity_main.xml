@@ -26,8 +26,18 @@
         android:id="@+id/test1Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="테스트1"
+        android:text="좋은 사진"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerMemo" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="검색테스트"
+        app:layout_constraintBottom_toTopOf="@+id/editMemo"
+        app:layout_constraintStart_toEndOf="@+id/test1Button"
         app:layout_constraintTop_toBottomOf="@+id/recyclerMemo" />
 
     <Button
