@@ -13,17 +13,8 @@
         android:ems="10"
         android:hint="검색할 키워드를 입력하세요"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/searchBarButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/searchBarButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="검색"
-        app:layout_constraintBottom_toTopOf="@+id/searchResult"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
