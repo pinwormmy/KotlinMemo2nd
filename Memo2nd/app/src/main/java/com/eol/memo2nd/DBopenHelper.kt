@@ -35,14 +35,35 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
         wd.close()
     }
 
-
-
-
     //select 메소드
     fun selectMemo():MutableList<Memo>{
         val list = mutableListOf<Memo>()
         //전체조회
         val selectAll = "select * from memo"
+        //읽기전용 데이터베이스 변수
+        val rd = readableDatabase
+        //데이터를 받아 줍니다.
+        val cursor = rd.rawQuery(selectAll,null)
+
+        //반복문을 사용하여 list 에 데이터를 넘겨 줍시다.
+        while(cursor.moveToNext()){
+            val userId = cursor.getLong(cursor.getColumnIndexOrThrow("userId"))
+            val memoContent = cursor.getString(cursor.getColumnIndexOrThrow("memoContent"))
+            val dateTime = cursor.getLong(cursor.getColumnIndexOrThrow("dateTime"))
+
+            list.add(Memo(userId, memoContent, dateTime))
+        }
+        cursor.close()
+        rd.close()
+
+        return list
+    }
+
+    //select 메소드 (검색용)
+    fun selectWhereMemo(keyword: String):MutableList<Memo>{
+        val list = mutableListOf<Memo>()
+        //전체조회
+        val selectAll = "select * from memo where memoContent like '%$keyword%'"
         //읽기전용 데이터베이스 변수
         val rd = readableDatabase
         //데이터를 받아 줍니다.

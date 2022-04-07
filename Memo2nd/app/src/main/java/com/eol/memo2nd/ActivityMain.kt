@@ -24,10 +24,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         val intent = Intent(this, DisplayTest1::class.java)
+        val intent2 = Intent(this, SearchTest::class.java)
 
-
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
 
 
         val adapter = MemoAdapter()
@@ -53,6 +52,11 @@ class MainActivity : AppCompatActivity() {
         binding.test1Button.setOnClickListener {
 
             startActivity(intent)
+        }
+
+        binding.searchButton.setOnClickListener {
+
+            startActivity(intent2)
         }
 
     }
