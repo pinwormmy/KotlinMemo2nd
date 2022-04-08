@@ -57,8 +57,9 @@ class SearchTest : AppCompatActivity(){
                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
                     adapter.notifyDataSetChanged()
                 }else{
+                    Toast.makeText(applicationContext, "입력없음", Toast.LENGTH_SHORT).show()
                     adapter.listData.clear()
-                    adapter.notifyDataSetChanged()
+
                 }
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -70,6 +71,7 @@ class SearchTest : AppCompatActivity(){
                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
                     adapter.notifyDataSetChanged()
                 }else{
+                    // Toast.makeText(applicationContext, "입력없음", Toast.LENGTH_SHORT).show()
                     adapter.listData.clear()
                     adapter.notifyDataSetChanged()
                 }
