@@ -38,41 +38,40 @@ class SearchTest : AppCompatActivity(){
         binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
-                if(p0.toString() != "" || p0.toString() != null){
-
+                if(p0.toString() == "" || p0.toString() == null){
+                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
+                    adapter.listData.clear()
+                    
+                }else{
                     dbHelper.selectWhereMemo(p0.toString())
                     adapter.listData.clear()
                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
-                    adapter.notifyDataSetChanged()
-                }else{
-                    adapter.listData.clear()
                     adapter.notifyDataSetChanged()
                 }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(p0.toString() != "" || p0.toString() != null){
 
+                if(p0.toString() == "" || p0.toString() == null){
+                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
+                    adapter.listData.clear()
+
+                }else{
                     dbHelper.selectWhereMemo(p0.toString())
                     adapter.listData.clear()
                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
                     adapter.notifyDataSetChanged()
-                }else{
-                    Toast.makeText(applicationContext, "입력없음", Toast.LENGTH_SHORT).show()
-                    adapter.listData.clear()
-
                 }
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-                if(p0.toString() != "" || p0.toString() != null){
+                if(p0.toString() == "" || p0.toString() == null){
+                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
+                    adapter.listData.clear()
 
+                }else{
                     dbHelper.selectWhereMemo(p0.toString())
                     adapter.listData.clear()
                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
-                    adapter.notifyDataSetChanged()
-                }else{
-                    // Toast.makeText(applicationContext, "입력없음", Toast.LENGTH_SHORT).show()
-                    adapter.listData.clear()
                     adapter.notifyDataSetChanged()
                 }
             }
