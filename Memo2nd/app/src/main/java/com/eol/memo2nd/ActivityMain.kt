@@ -1,6 +1,7 @@
 package com.eol.memo2nd
 
 // 여기다가 러그투러그에 구현하려고 하는 기능들 하나씩 공부하면서 적용해보고 할만큼했다 싶으면 어플 새로 만들자
+// 검색은 구현을 했는데...다음은?
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -27,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         val intent2 = Intent(this, SearchTest::class.java)
 
         setContentView(binding.root)
-
 
         val adapter = MemoAdapter()
         adapter.listData.addAll(dbHelper.selectMemo())

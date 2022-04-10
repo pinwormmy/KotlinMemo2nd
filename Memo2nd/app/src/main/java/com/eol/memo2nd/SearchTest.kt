@@ -28,54 +28,55 @@ class SearchTest : AppCompatActivity(){
         setContentView(binding3.root)
 
 
-        val adapter = MemoAdapter()
-        adapter.dbHelper = dbHelper
-
-        binding3.searchResult.adapter = adapter
-        binding3.searchResult.layoutManager = LinearLayoutManager(this)
 
 
-        binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
+         val adapter = MemoAdapter()
+         adapter.dbHelper = dbHelper
 
-                if(p0.toString() == "" || p0.toString() == null){
-                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
-                    adapter.listData.clear()
-                    
-                }else{
-                    dbHelper.selectWhereMemo(p0.toString())
-                    adapter.listData.clear()
-                    adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
-                    adapter.notifyDataSetChanged()
-                }
-            }
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+         binding3.searchResult.adapter = adapter
+         binding3.searchResult.layoutManager = LinearLayoutManager(this)
 
-                if(p0.toString() == "" || p0.toString() == null){
-                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
-                    adapter.listData.clear()
 
-                }else{
-                    dbHelper.selectWhereMemo(p0.toString())
-                    adapter.listData.clear()
-                    adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
-                    adapter.notifyDataSetChanged()
-                }
-            }
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+         binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
+             override fun afterTextChanged(p0: Editable?) {
 
-                if(p0.toString() == "" || p0.toString() == null){
-                    Toast.makeText(this@SearchTest, "빈칸데스", Toast.LENGTH_SHORT).show()
-                    adapter.listData.clear()
+                 if(p0.toString() == "" || p0.toString() == null){
+                     adapter.listData.clear()
 
-                }else{
-                    dbHelper.selectWhereMemo(p0.toString())
-                    adapter.listData.clear()
-                    adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
-                    adapter.notifyDataSetChanged()
-                }
-            }
-        })
+                 }else{
+                     dbHelper.selectWhereMemo(p0.toString())
+                     adapter.listData.clear()
+                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
+                     adapter.notifyDataSetChanged()
+                 }
+             }
+             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                 if(p0.toString() == "" || p0.toString() == null){
+
+                     adapter.listData.clear()
+
+                 }else{
+                     dbHelper.selectWhereMemo(p0.toString())
+                     adapter.listData.clear()
+                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
+                     adapter.notifyDataSetChanged()
+                 }
+             }
+             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                 if(p0.toString() == "" || p0.toString() == null){
+
+                     adapter.listData.clear()
+
+                 }else{
+                     dbHelper.selectWhereMemo(p0.toString())
+                     adapter.listData.clear()
+                     adapter.listData.addAll(dbHelper.selectWhereMemo(p0.toString()))
+                     adapter.notifyDataSetChanged()
+                 }
+             }
+         })
 
         binding3.searchToMainButton.setOnClickListener {
 
