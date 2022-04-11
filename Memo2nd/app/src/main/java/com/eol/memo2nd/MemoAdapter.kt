@@ -16,17 +16,7 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
 
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return Holder(binding).apply {
-            binding.deleteButton.setOnClickListener {
-
-                var cursor = adapterPosition
-
-                //강제로 null을 허용하기 위해 !! 사용
-                dbHelper?.deleteMemo(listData.get(cursor))
-                listData.remove(listData.get(cursor))
-                notifyDataSetChanged()
-            }
-        }
+        return Holder(binding)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
@@ -46,6 +36,6 @@ class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding
         // binding.textUserId.text = memo.userId.toString() 생략해보기
         binding.textMemoContent.text = memo.memoContent
         val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
-        binding.textDateTime.text = "${sdf.format(memo.dateTime)}"
+
     }
 }
