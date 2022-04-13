@@ -5,43 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/brandView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:text="브랜드"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/collectionNameView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="2"/>
+
+    <TextView
+        android:id="@+id/collectionNameView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="컬렉션(이름) 표시"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/caseSizeView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/brandView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="6" />
+
+    <TextView
+        android:id="@+id/caseSizeView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/lugTolugSizeView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/collectionNameView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+    <TextView
+        android:id="@+id/lugTolugSizeView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/caseSizeView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_weight="1"/>
 
-        <TextView
-            android:id="@+id/textUserId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="01"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/brandMemo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/brandMemo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="브랜드표시예정"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textMemoContent"
-            app:layout_constraintStart_toEndOf="@id/textUserId"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textMemoContent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="컬렉션(이름) 표시"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/brandMemo"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

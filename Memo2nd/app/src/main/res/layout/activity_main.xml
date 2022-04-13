@@ -14,7 +14,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,6 +27,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="좋은 사진"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerMemo" />
 
@@ -34,35 +37,22 @@
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:text="검색테스트"
-        app:layout_constraintBottom_toTopOf="@+id/editMemo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addWatchButton"
         app:layout_constraintStart_toEndOf="@+id/test1Button"
         app:layout_constraintTop_toBottomOf="@+id/recyclerMemo" />
 
     <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:text="저장"
-        app:layout_constraintBottom_toBottomOf="@+id/editMemo"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerMemo"
-        app:layout_constraintStart_toEndOf="@+id/editMemo"
-        app:layout_constraintTop_toTopOf="@+id/editMemo" />
-
-    <EditText
-        android:id="@+id/editMemo"
+        android:id="@+id/addWatchButton"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
-        android:hint="메모를 입력하세요"
-        android:inputType="textPersonName"
+        android:layout_height="wrap_content"
+        android:text="시계정보 추가"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/saveButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/test1Button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/searchButton"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerMemo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
