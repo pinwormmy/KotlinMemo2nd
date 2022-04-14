@@ -11,7 +11,7 @@ import com.eol.memo2nd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val dbHelper = DBopenHelper(this,"Memo",null,1)
+
 
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
@@ -24,19 +24,16 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
-        val intent = Intent(this, DisplayTest1::class.java)
-        val intent2 = Intent(this, SearchTest::class.java)
+        val intent = Intent(this, DisplayTest1Fragment::class.java)
+        val intent2 = Intent(this, SearchTestFragment::class.java)
 
         setContentView(binding.root)
 
-        val adapter = MemoAdapter()
-        adapter.listData.addAll(dbHelper.selectMemo())
-        adapter.dbHelper = dbHelper
-
-        binding.recyclerMemo.adapter = adapter
-        binding.recyclerMemo.layoutManager = LinearLayoutManager(this)
+        setMainFrag(0)
 
 
+
+/*
         binding.saveButton.setOnClickListener {
             if (binding.editMemo.text.toString().isNotEmpty()) {
                 val memo = Memo(null, binding.editMemo.text.toString(), binding.editMemo.text.toString(), binding.editMemo.text, binding.editMemo.text, System.currentTimeMillis())
@@ -48,20 +45,42 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             binding.editMemo.setText("")
         }
-
+*/
         binding.test1Button.setOnClickListener {
 
-            startActivity(intent)
+            setMainFrag(1)
         }
 
         binding.searchButton.setOnClickListener {
 
-            startActivity(intent2)
+            setMainFrag(2)
         }
 
+        binding.addWatchButton.setOnClickListener{
+
+            setMainFrag(3)
+        }
     }
 
+    private fun setMainFrag(fragNum : Int){
 
+        val ft = supportFragmentManager.beginTransaction()
+
+        when(fragNum){
+            0 -> {
+                ft.replace(R.id.mainFrame, BasicFragment()).commit()
+            }
+            1 -> {
+                ft.replace(R.id.mainFrame, DisplayTest1Fragment()).commit()
+            }
+            2 -> {
+                ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
+            }
+            3 -> {
+                ft.replace(R.id.mainFrame, BasicFragment()).commit()
+            }
+        }
+    }
 
 }
 

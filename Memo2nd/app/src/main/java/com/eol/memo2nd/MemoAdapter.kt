@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat
 
 class MemoAdapter : RecyclerView.Adapter<Holder>(){
 
-    var listData = mutableListOf<Memo>()
+    var listData = mutableListOf<Watch>()
     var dbHelper:DBopenHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -20,8 +20,8 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val memo = listData[position]
-        holder.setData(memo)
+        val watch = listData[position]
+        holder.setData(watch)
     }
 
     override fun getItemCount(): Int {
@@ -32,9 +32,9 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
 }
 class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root){
 
-    fun setData(memo: Memo){
-        // binding.textUserId.text = memo.userId.toString()
-        binding.textss.text = memo.memoContent
+    fun setData(watch: Watch){
+        // binding.textwatchId.text = memo.watchId.toString()
+        // binding.textss.text = memo.memoContent
         val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
 
     }

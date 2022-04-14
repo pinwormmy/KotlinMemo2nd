@@ -3,16 +3,14 @@ package com.eol.memo2nd
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.SearchTestBinding
 
-class SearchTest : AppCompatActivity(){
+class SearchTestFragment : Fragment(){
 
-    private val dbHelper = DBopenHelper(this,"Memo",null,1)
+    // private val dbHelper = DBopenHelper(this,"Memo",null,1)
 
     // ViewBinding
     private lateinit var binding3 : SearchTestBinding
@@ -26,9 +24,6 @@ class SearchTest : AppCompatActivity(){
         binding3 = SearchTestBinding.inflate(layoutInflater)
 
         setContentView(binding3.root)
-
-
-
 
          val adapter = MemoAdapter()
          adapter.dbHelper = dbHelper
@@ -78,9 +73,5 @@ class SearchTest : AppCompatActivity(){
              }
          })
 
-        binding3.searchToMainButton.setOnClickListener {
-
-            finish()
-        }
     }
 }
