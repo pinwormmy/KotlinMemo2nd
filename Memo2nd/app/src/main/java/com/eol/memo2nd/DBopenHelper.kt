@@ -60,6 +60,7 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
 
             list.add(Watch(watchId, brand, collectionName, caseSize, lugTolugSize, dateTime))
         }
+
         cursor.close()
         rd.close()
 

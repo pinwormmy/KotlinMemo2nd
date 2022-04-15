@@ -36,14 +36,14 @@
         android:layout_height="wrap_content"
         android:text="40"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/lugTolugSizeView"
+        app:layout_constraintEnd_toStartOf="@+id/dateTimeView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/collectionNameView"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_weight="1" />
 
     <TextView
-        android:id="@+id/lugTolugSizeView"
+        android:id="@+id/writeLugtoLugView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="50"
@@ -54,4 +54,34 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_weight="1"/>
 
+    <TextView
+        android:id="@+id/watchIdView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="411dp"
+        android:layout_marginBottom="19dp"
+        android:text="01"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateTimeView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="336dp"
+        android:layout_marginTop="192dp"
+        android:layout_marginEnd="411dp"
+        android:layout_marginBottom="19dp"
+        android:text="2022/11/11"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
