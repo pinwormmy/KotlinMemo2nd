@@ -3,35 +3,24 @@ package com.eol.memo2nd
 // 여기다가 러그투러그에 구현하려고 하는 기능들 하나씩 공부하면서 적용해보고 할만큼했다 싶으면 어플 새로 만들자
 // 작성 페이지는 프레그먼트 적용해서 따로 만들자.
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-
-
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // ViewBinding
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        val intent = Intent(this, DisplayTest1Fragment::class.java)
-        val intent2 = Intent(this, SearchTestFragment::class.java)
 
         setContentView(binding.root)
 
         setMainFrag(0)
-
-
 
 /*
         binding.saveButton.setOnClickListener {
@@ -77,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                 ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
             }
             3 -> {
-                ft.replace(R.id.mainFrame, BasicFragment()).commit()
+                // ft.replace(R.id.mainFrame, addWatchFragment()).commit()
             }
         }
     }

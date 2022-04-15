@@ -1,12 +1,13 @@
-package com.eol.memo2nd
+package com.eol.watch2nd
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.eol.memo2nd.Watch
 
 // SQLiteOpenHelper 상속받아 SQLite 를 사용하도록 하겠습니다.
-class DBopenHelper(context: Context, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
+class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
     //onCreate(), onUpgrade() 두가지 메소드를 오버라이드 받아 줍시다.
 
@@ -23,7 +24,7 @@ class DBopenHelper(context: Context, name: String?, factory: SQLiteDatabase.Curs
     }
 
     //insert 메소드
-    fun addWatch(watch:Watch){
+    fun addWatch(watch: Watch){
         val values = ContentValues()
         //넘겨줄 컬럼의 매개변수 지정
         values.put("brand",watch.brand)
@@ -33,16 +34,16 @@ class DBopenHelper(context: Context, name: String?, factory: SQLiteDatabase.Curs
         values.put("dateTime",watch.dateTime)
         //쓰기나 수정이 가능한 데이터베이스 변수
         val wd = writableDatabase
-        wd.insert("memo",null,values)
+        wd.insert("watch",null,values)
         //사용이 끝나면 반드시 close()를 사용하여 메모리누수 가 되지않도록 합시다.
         wd.close()
     }
 
     //select 메소드
-    fun selectMemo():MutableList<Watch>{
+    fun selectWatch():MutableList<Watch>{
         val list = mutableListOf<Watch>()
         //전체조회
-        val selectAll = "select * from memo"
+        val selectAll = "select * from watch"
         //읽기전용 데이터베이스 변수
         val rd = readableDatabase
         //데이터를 받아 줍니다.
@@ -66,10 +67,10 @@ class DBopenHelper(context: Context, name: String?, factory: SQLiteDatabase.Curs
     }
 
     //select 메소드 (검색용)
-    fun selectWhereMemo(keyword: String):MutableList<Watch>{
+    fun selectWhereWatch(keyword: String):MutableList<Watch>{
         val list = mutableListOf<Watch>()
         //전체조회
-        val selectAll = "select * from memo where brand like '%$keyword%' or collectionName like '%$keyword%'"
+        val selectAll = "select * from watch where brand like '%$keyword%' or collectionName like '%$keyword%'"
         //읽기전용 데이터베이스 변수
         val rd = readableDatabase
         //데이터를 받아 줍니다.
@@ -93,21 +94,21 @@ class DBopenHelper(context: Context, name: String?, factory: SQLiteDatabase.Curs
     }
 
     //update 메소드 구현은 안했는데, 코드는ㄴ 들어있더라
-    fun updateMemo(watch:Watch){
+    fun updateWatch(watch:Watch){
         val values = ContentValues()
 
         values.put("brand",watch.brand)
         values.put("dateTime",watch.dateTime)
 
         val wd = writableDatabase
-        wd.update("memo",values,"watchId=${watch.watchId}",null)
+        wd.update("watch",values,"watchId=${watch.watchId}",null)
         wd.close()
 
     }
 
     //delete 메소드
-    fun deleteMemo(watch:Watch){
-        val delete = "delete from Memo where watchId = ${watch.watchId}"
+    fun deleteWatch(watch:Watch){
+        val delete = "delete from watch where watchId = ${watch.watchId}"
         val db = writableDatabase
         db.execSQL(delete)
         db.close()

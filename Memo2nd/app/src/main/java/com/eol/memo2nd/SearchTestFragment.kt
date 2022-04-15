@@ -22,7 +22,7 @@ class SearchTestFragment : Fragment(){
 
 
         binding3 = SearchTestBinding.inflate(layoutInflater)
-
+/*
         setContentView(binding3.root)
 
          val adapter = MemoAdapter()
@@ -72,6 +72,6 @@ class SearchTestFragment : Fragment(){
                  }
              }
          })
-
+*/
     }
 }

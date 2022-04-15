@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eol.memo2nd.databinding.ItemRecyclerBinding
-import java.text.SimpleDateFormat
+import com.eol.watch2nd.DBopenHelper
 
 class MemoAdapter : RecyclerView.Adapter<Holder>(){
 
     var listData = mutableListOf<Watch>()
-    var dbHelper:DBopenHelper? = null
+    var dbHelper: DBopenHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 
@@ -27,15 +27,16 @@ class MemoAdapter : RecyclerView.Adapter<Holder>(){
     override fun getItemCount(): Int {
         return listData.size
     }
-
-
 }
+
 class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root){
 
     fun setData(watch: Watch){
-        // binding.textwatchId.text = memo.watchId.toString()
-        // binding.textss.text = memo.memoContent
-        val sdf = SimpleDateFormat("yyyy/MM/dd hh:mm")
+
+        binding.brandView.text = watch.brand
+        binding.collectionNameView.text = watch.collectionName
+        binding.caseSizeView.text = watch.caseSize.toString()
+        binding.lugTolugSizeView.text = watch.lugTolugSize.toString()
 
     }
 }
