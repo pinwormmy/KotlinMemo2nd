@@ -14,8 +14,6 @@ class BasicFragment() : Fragment() {
 
     lateinit var binding: WatchListFragmentBinding
 
-    private val dbHelper = DBopenHelper(context,"Watch",null,1)
-
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
 
@@ -27,6 +25,8 @@ class BasicFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,1)
+
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
 
         val adapter = MemoAdapter()
@@ -34,7 +34,7 @@ class BasicFragment() : Fragment() {
         adapter.dbHelper = dbHelper
 
         binding.recyclerMemo.adapter = adapter
-        binding.recyclerMemo.layoutManager = LinearLayoutManager(context)
+        binding.recyclerMemo.layoutManager = LinearLayoutManager(mainActivity)
 
         return binding.root
     }

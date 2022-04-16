@@ -5,9 +5,13 @@ package com.eol.memo2nd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.ActivityMainBinding
+import com.eol.watch2nd.DBopenHelper
 
 class MainActivity : AppCompatActivity() {
+
+    private val dbHelper = DBopenHelper(this,"Watch",null,1)
 
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
@@ -18,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
 
         setMainFrag(0)
@@ -35,6 +40,8 @@ class MainActivity : AppCompatActivity() {
             binding.editMemo.setText("")
         }
 */
+
+
         binding.test1Button.setOnClickListener {
 
             setMainFrag(1)
@@ -69,6 +76,8 @@ class MainActivity : AppCompatActivity() {
                 // ft.replace(R.id.mainFrame, addWatchFragment()).commit()
             }
         }
+
+
     }
 
 }

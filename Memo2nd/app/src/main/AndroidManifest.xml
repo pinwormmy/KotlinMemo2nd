@@ -16,12 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayTest1Fragment"></activity>
-        <activity android:name=".SearchTestFragment"></activity>
-
     </application>
-
-
 
 
 </manifest>
