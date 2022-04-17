@@ -42,7 +42,7 @@ class AddWatchFragment() : Fragment() {
             if (binding.writeBrand.text.toString().isNotEmpty() and binding.writeNameText.text.toString().isNotEmpty()
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
                 val watch = Watch(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(),
-                    Integer.parseInt(binding.writeCaseSizeText.toString()),Integer.parseInt(binding.writeLugtoLugText.toString()), System.currentTimeMillis())
+                    Integer.parseInt(binding.writeCaseSizeText.text.toString()),Integer.parseInt(binding.writeLugtoLugText.text.toString()), System.currentTimeMillis())
                 dbHelper.addWatch(watch)
             }
             adapter.listData.clear()
