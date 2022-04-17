@@ -23,37 +23,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         setMainFrag(0)
 
-/*
-        binding.saveButton.setOnClickListener {
-            if (binding.editMemo.text.toString().isNotEmpty()) {
-                val memo = Memo(null, binding.editMemo.text.toString(), binding.editMemo.text.toString(), binding.editMemo.text, binding.editMemo.text, System.currentTimeMillis())
-                dbHelper.insertMemo(memo)
-            }
-            adapter.listData.clear()
-            adapter.listData.addAll(dbHelper.selectMemo())
-
-            adapter.notifyDataSetChanged()
-            binding.editMemo.setText("")
-        }
-*/
-
-
         binding.test1Button.setOnClickListener {
-
             setMainFrag(1)
         }
 
         binding.searchButton.setOnClickListener {
-
             setMainFrag(2)
         }
 
         binding.addWatchButton.setOnClickListener{
-
             setMainFrag(3)
         }
     }
@@ -73,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                 ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
             }
             3 -> {
-                // ft.replace(R.id.mainFrame, addWatchFragment()).commit()
+                ft.replace(R.id.mainFrame, AddWatchFragment()).commit()
             }
         }
 
