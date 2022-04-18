@@ -2,7 +2,9 @@ package com.eol.memo2nd
 
 // 여기다가 러그투러그에 구현하려고 하는 기능들 하나씩 공부하면서 적용해보고 할만큼했다 싶으면 어플 새로 만들자
 // 검색창에 엔터치면 줄띄움되는거 안되게하고
-// 연관검색어 기능 넣기
+// 연관검색어 기능 넣기, 품번 컬럼 추가. 정보눌렀을때만 따로 뜨게 하긔
+// 위키시스템 간략버전이라도 도입....하려면 로그인시스템 구축해야함
+// 실물크기 구현하는 기능
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
