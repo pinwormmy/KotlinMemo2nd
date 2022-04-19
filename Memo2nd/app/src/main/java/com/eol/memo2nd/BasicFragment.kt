@@ -25,7 +25,7 @@ class BasicFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,1)
+        var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,2)
 
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
 

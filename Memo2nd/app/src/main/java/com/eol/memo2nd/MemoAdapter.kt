@@ -3,6 +3,7 @@ package com.eol.memo2nd
 
 import android.database.sqlite.SQLiteOpenHelper
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eol.memo2nd.databinding.ItemRecyclerBinding
@@ -17,6 +18,14 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        binding.collectionNameView.setOnClickListener(){
+            binding.refNumView.visibility = View.VISIBLE
+        }
+
+        binding.refNumView.setOnClickListener(){
+            binding.refNumView.visibility = View.GONE
+        }
 
         return Holder(binding)
     }
@@ -37,6 +46,7 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
             binding.watchIdView.text = watch.watchId.toString()
             binding.brandView.text = watch.brand
             binding.collectionNameView.text = watch.collectionName
+            binding.refNumView.text = watch.refNumber
             binding.caseSizeView.text = watch.caseSize.toString()
             binding.writeLugtoLugView.text = watch.lugTolugSize.toString()
             val sdf = SimpleDateFormat("yyyy/MM/dd")

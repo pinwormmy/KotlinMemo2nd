@@ -19,7 +19,7 @@
         android:id="@+id/writeBrand"
         android:layout_height="wrap_content"
         android:layout_width="0dp"
-        android:hint="브랜드를 입력하세요"
+        android:hint="Please enter the brand name"
         android:maxLines="1"
         android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,12 +31,24 @@
         android:id="@+id/writeNameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="시계 이름을 입력하세요"
+        android:hint="Please enter the watch name"
         android:maxLines="1"
         android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/writeBrand" />
+        app:layout_constraintTop_toBottomOf="@id/writeBrand"
+        app:layout_constraintBottom_toTopOf="@id/writeRefNumberText"/>
+
+    <EditText
+        android:id="@+id/writeRefNumberText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Please enter the ref Number"
+        android:maxLines="1"
+        android:inputType="textAutoComplete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/writeNameText" />
 
     <EditText
         android:id="@+id/writeCaseSizeText"
@@ -48,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/writeLugtoLugText"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writeNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/writeRefNumberText" />
 
     <EditText
         android:id="@+id/writeLugtoLugText"
@@ -59,7 +71,7 @@
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/saveButton"
         app:layout_constraintStart_toEndOf="@id/writeCaseSizeText"
-        app:layout_constraintTop_toBottomOf="@id/writeNameText"
+        app:layout_constraintTop_toBottomOf="@id/writeRefNumberText"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
@@ -67,7 +79,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="add watch"
-        app:layout_constraintTop_toBottomOf="@+id/writeNameText"
+        app:layout_constraintTop_toBottomOf="@+id/writeRefNumberText"
         app:layout_constraintStart_toEndOf="@id/writeLugtoLugText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

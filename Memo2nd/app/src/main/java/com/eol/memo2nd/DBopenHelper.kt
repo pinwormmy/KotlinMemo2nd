@@ -2,25 +2,39 @@ package com.eol.watch2nd
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.eol.memo2nd.Watch
 
+
 // SQLiteOpenHelper 상속받아 SQLite 를 사용하도록 하겠습니다.
 class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version) {
 
-    //onCreate(), onUpgrade() 두가지 메소드를 오버라이드 받아 줍시다.
 
     //데이터베이스가 만들어 지지않은 상태에서만 작동합니다. 이미 만들어져 있는 상태라면 실행되지 않습니다.
     override fun onCreate(db: SQLiteDatabase?) {
         //테이블을 생성할 쿼리를 작성하여 줍시다.
-        val create = "create table watch (watchId integer primary key, brand text, collectionName text, caseSize integer, lugTolugSize integer, dateTime integer)"
+        val create = "create table watch (watchId integer primary key, brand text, collectionName text, refNumber text, caseSize integer, lugTolugSize integer, dateTime integer)"
         //실행시켜 줍니다.
         db?.execSQL(create)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
+        try {
+            if (oldVersion < 2) {
+                updateRefNumberColumn(db)
+            }
+        } catch (e: SQLException) {
+            db?.execSQL("DROP TABLE IF EXISTS " + "watch")
+            onCreate(db)
+        }
+
+    }
+
+    private fun updateRefNumberColumn(db: SQLiteDatabase?) {
+        db?.execSQL("ALTER TABLE watch ADD COLUMN refNumber TEXT")
     }
 
     //insert 메소드
@@ -29,6 +43,7 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
         //넘겨줄 컬럼의 매개변수 지정
         values.put("brand",watch.brand)
         values.put("collectionName",watch.collectionName)
+        values.put("refNumber",watch.refNumber)
         values.put("caseSize",watch.caseSize)
         values.put("lugTolugSize",watch.lugTolugSize)
         values.put("dateTime",watch.dateTime)
@@ -54,11 +69,12 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
             val watchId = cursor.getLong(cursor.getColumnIndexOrThrow("watchId"))
             val brand = cursor.getString(cursor.getColumnIndexOrThrow("brand"))
             val collectionName = cursor.getString(cursor.getColumnIndexOrThrow("collectionName"))
+            val refNumber = cursor.getString(cursor.getColumnIndexOrThrow("refNumber"))
             val caseSize = cursor.getInt(cursor.getColumnIndexOrThrow("caseSize"))
             val lugTolugSize = cursor.getInt(cursor.getColumnIndexOrThrow("lugTolugSize"))
             val dateTime = cursor.getLong(cursor.getColumnIndexOrThrow("dateTime"))
 
-            list.add(Watch(watchId, brand, collectionName, caseSize, lugTolugSize, dateTime))
+            list.add(Watch(watchId, brand, collectionName, refNumber, caseSize, lugTolugSize, dateTime))
         }
 
         cursor.close()
@@ -82,11 +98,12 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
             val watchId = cursor.getLong(cursor.getColumnIndexOrThrow("watchId"))
             val brand = cursor.getString(cursor.getColumnIndexOrThrow("brand"))
             val collectionName = cursor.getString(cursor.getColumnIndexOrThrow("collectionName"))
+            val refNumber = cursor.getString(cursor.getColumnIndexOrThrow("refNumber"))
             val caseSize = cursor.getInt(cursor.getColumnIndexOrThrow("caseSize"))
             val lugTolugSize = cursor.getInt(cursor.getColumnIndexOrThrow("lugTolugSize"))
             val dateTime = cursor.getLong(cursor.getColumnIndexOrThrow("dateTime"))
 
-            list.add(Watch(watchId, brand, collectionName, caseSize, lugTolugSize, dateTime))
+            list.add(Watch(watchId, brand, collectionName, refNumber, caseSize, lugTolugSize, dateTime))
         }
         cursor.close()
         rd.close()

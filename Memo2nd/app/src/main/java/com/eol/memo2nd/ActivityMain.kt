@@ -14,8 +14,6 @@ import com.eol.watch2nd.DBopenHelper
 
 class MainActivity : AppCompatActivity() {
 
-    private val dbHelper = DBopenHelper(this,"Watch",null,1)
-
     // ViewBinding
     private lateinit var binding : ActivityMainBinding
 
