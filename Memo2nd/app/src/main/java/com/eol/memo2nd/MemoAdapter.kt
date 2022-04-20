@@ -21,6 +21,7 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
 
         binding.collectionNameView.setOnClickListener(){
             binding.refNumView.visibility = View.VISIBLE
+            binding.refNumView.bringToFront()
         }
 
         binding.refNumView.setOnClickListener(){

@@ -87,7 +87,7 @@ class DBopenHelper(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     fun selectWhereWatch(keyword: String):MutableList<Watch>{
         val list = mutableListOf<Watch>()
         //전체조회
-        val selectAll = "select * from watch where brand like '%$keyword%' or collectionName like '%$keyword%'"
+        val selectAll = "select * from watch where brand like '%$keyword%' or collectionName like '%$keyword%' or refNumber like '%$keyword%'"
         //읽기전용 데이터베이스 변수
         val rd = readableDatabase
         //데이터를 받아 줍니다.
