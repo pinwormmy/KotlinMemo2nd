@@ -1,7 +1,6 @@
 package com.eol.memo2nd
 
 
-import android.database.sqlite.SQLiteOpenHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
