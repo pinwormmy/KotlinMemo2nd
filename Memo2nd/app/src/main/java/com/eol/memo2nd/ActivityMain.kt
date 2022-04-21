@@ -2,6 +2,7 @@ package com.eol.memo2nd
 
 
 // 위키시스템 간략버전이라도 도입....하려면 로그인시스템 구축해야함
+// Room 라이브러리 적용 검토. 로그인이랑 연동해서 적용
 // 실물크기 구현하는 기능
 
 import androidx.appcompat.app.AppCompatActivity
