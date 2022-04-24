@@ -1,0 +1,28 @@
+package com.eol.memo2nd
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+@Database(entities = [WatchEntity::class], version = 1, exportSchema = false)
+abstract class AppDataBase : RoomDatabase() {
+    abstract fun WatchSizeDAO() : WatchSizeDAO
+
+    companion object{
+
+        private var instance: AppDataBase? = null
+
+        @Synchronized
+        fun getInstance(context: Context): AppDataBase?{
+            if(instance == null){
+                instance = Room.databaseBuilder(
+                    context.applicationContext, AppDataBase::class.java,
+                    "database-watchSize")
+                    .allowMainThreadQueries()
+                    .build()
+            }
+            return instance
+        }
+    }
+}
