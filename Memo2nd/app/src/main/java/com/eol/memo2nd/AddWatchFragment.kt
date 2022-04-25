@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.AddWatchBinding
-import com.eol.memo2nd.databinding.WatchListFragmentBinding
 import com.eol.watch2nd.DBopenHelper
 
 class AddWatchFragment() : Fragment() {
@@ -30,7 +29,7 @@ class AddWatchFragment() : Fragment() {
 
         binding = AddWatchBinding.inflate(inflater, container, false)
 
-        val adapter = MemoAdapter()
+        val adapter = WatchAdapter()
         adapter.listData.addAll(dbHelper.selectWatch())
         adapter.dbHelper = dbHelper
 

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [WatchEntity::class], version = 1, exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
-    abstract fun WatchSizeDAO() : WatchSizeDAO
+    abstract fun watchDAO() : WatchSizeDAO
 
     companion object{
 

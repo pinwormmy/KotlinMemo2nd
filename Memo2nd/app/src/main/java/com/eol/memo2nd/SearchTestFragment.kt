@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.SearchTestBinding
@@ -36,7 +35,7 @@ class SearchTestFragment : Fragment(){
 
         binding3 = SearchTestBinding.inflate(layoutInflater)
 
-         val adapter = MemoAdapter()
+         val adapter = WatchAdapter()
          adapter.dbHelper = dbHelper
 
          binding3.searchResult.adapter = adapter

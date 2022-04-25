@@ -8,7 +8,6 @@ package com.eol.memo2nd
 // 실물크기 구현하는 기능
 
 
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager

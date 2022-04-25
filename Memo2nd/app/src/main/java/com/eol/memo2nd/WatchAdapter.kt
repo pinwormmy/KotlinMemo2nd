@@ -9,10 +9,8 @@ import com.eol.memo2nd.databinding.ItemRecyclerBinding
 import com.eol.watch2nd.DBopenHelper
 import java.text.SimpleDateFormat
 
-class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
+class WatchAdapter(private var listData : ArrayList<WatchEntity>) : RecyclerView.Adapter<WatchAdapter.Holder>(){
 
-    var listData = ArrayList<Watch>()
-    var dbHelper: DBopenHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
 
@@ -31,7 +29,7 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val watch:Watch = listData.get(position)
+        val watch:WatchEntity = listData.get(position)
         holder.setData(watch)
     }
 
@@ -41,7 +39,7 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.Holder>(){
 
     inner class Holder(private val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun setData(watch: Watch){
+        fun setData(watch: WatchEntity){
 
             binding.watchIdView.text = watch.watchId.toString()
             binding.brandView.text = watch.brand
