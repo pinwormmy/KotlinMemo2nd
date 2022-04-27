@@ -25,29 +25,32 @@ class AddWatchFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,2)
+        // var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,2)
 
         binding = AddWatchBinding.inflate(inflater, container, false)
 
+        /*
         val adapter = WatchAdapter()
         adapter.listData.addAll(dbHelper.selectWatch())
         adapter.dbHelper = dbHelper
 
         binding.watchListRecycler.adapter = adapter
         binding.watchListRecycler.layoutManager = LinearLayoutManager(mainActivity)
-
+*/
 
         binding.saveButton.setOnClickListener {
             if (binding.writeBrand.text.toString().isNotEmpty() and binding.writeNameText.text.toString().isNotEmpty()
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
                 val watch = Watch(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
                     Integer.parseInt(binding.writeCaseSizeText.text.toString()),Integer.parseInt(binding.writeLugtoLugText.text.toString()), System.currentTimeMillis())
-                dbHelper.addWatch(watch)
+                // dbHelper.addWatch(watch)
             }
+            /*
             adapter.listData.clear()
             adapter.listData.addAll(dbHelper.selectWatch())
 
             adapter.notifyDataSetChanged()
+            */
             binding.writeBrand.setText("")
             binding.writeNameText.setText("")
             binding.writeRefNumberText.setText("")
