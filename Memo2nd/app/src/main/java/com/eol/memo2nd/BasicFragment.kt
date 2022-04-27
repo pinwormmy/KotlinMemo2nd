@@ -15,6 +15,8 @@ class BasicFragment() : Fragment() {
 
     lateinit var binding: WatchListFragmentBinding
 
+    var db : AppDataBase? = null
+    var watchList = mutableListOf<WatchEntity>()
 
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
@@ -23,7 +25,7 @@ class BasicFragment() : Fragment() {
         super.onAttach(context)
         // 2. Context를 액티비티로 형변환해서 할당
         mainActivity = context as MainActivity
-
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,17 +33,20 @@ class BasicFragment() : Fragment() {
 
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
 
-        val db = Room.databaseBuilder(mainActivity, AppDataBase::class.java, "database").allowMainThreadQueries().build()
+        // db 초기화
+        db = AppDataBase.getInstance(mainActivity)
 
-        // db.WatchSizeDAO().showAll().observe(mainActivity, Observer{todos -> result_text.text = todos.toString()} )
-        /*
-        val adapter = WatchAdapter()
-        adapter.listData.addAll(dbHelper.selectWatch())
-        adapter.dbHelper = dbHelper
+        val savedWatch = db!!.watchDAO().showAll()
+        if(savedWatch.isNotEmpty()){
+            watchList.addAll(savedWatch)
+        }
+
+        val adapter = WatchAdapter(watchList)
+        //adapter.listData.addAll(dbHelper.selectWatch())
 
         binding.recyclerMemo.adapter = adapter
         binding.recyclerMemo.layoutManager = LinearLayoutManager(mainActivity)
-*/
+
         return binding.root
     }
 

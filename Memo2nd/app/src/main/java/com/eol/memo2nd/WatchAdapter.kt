@@ -9,7 +9,7 @@ import com.eol.memo2nd.databinding.ItemRecyclerBinding
 import com.eol.watch2nd.DBopenHelper
 import java.text.SimpleDateFormat
 
-class WatchAdapter(private var listData : ArrayList<WatchEntity>) : RecyclerView.Adapter<WatchAdapter.Holder>(){
+class WatchAdapter(var listData : List<WatchEntity>) : RecyclerView.Adapter<WatchAdapter.Holder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

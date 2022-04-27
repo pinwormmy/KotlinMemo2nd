@@ -14,7 +14,7 @@ import com.eol.watch2nd.DBopenHelper
 
 class MainActivity : AppCompatActivity() {
 
-    // ViewBinding
+
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+
+
 
         setMainFrag(0)
 

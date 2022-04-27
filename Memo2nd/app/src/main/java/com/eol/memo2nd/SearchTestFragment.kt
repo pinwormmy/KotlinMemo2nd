@@ -19,6 +19,9 @@ class SearchTestFragment : Fragment(){
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
 
+    var db : AppDataBase? = null
+    var watchList = mutableListOf<WatchEntity>()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         // 2. Context를 액티비티로 형변환해서 할당
@@ -30,58 +33,65 @@ class SearchTestFragment : Fragment(){
         // ViewBinding
         super.onCreate(savedInstanceState)
 
-        val dbHelper = DBopenHelper(mainActivity,"Watch",null,2)
+
+        // val dbHelper = DBopenHelper(mainActivity,"Watch",null,2)
 
 
         binding3 = SearchTestBinding.inflate(layoutInflater)
 
-         val adapter = WatchAdapter()
-         adapter.dbHelper = dbHelper
+        // db 초기화
+        db = AppDataBase.getInstance(mainActivity)
 
-         binding3.searchResult.adapter = adapter
-         binding3.searchResult.layoutManager = LinearLayoutManager(mainActivity)
+        val savedWatch = db!!.watchDAO().showAll()
+        if(savedWatch.isNotEmpty()){
+            watchList.addAll(savedWatch)
+        }
+
+        val adapter = WatchAdapter(watchList)
+        // adapter.dbHelper = dbHelper
+
+        binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(p0: Editable?) {
+
+                if(p0.toString() == "" || p0.toString() == null){
+                    watchList.clear()
+                }else{
+                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    watchList.clear()
+                    watchList.addAll(searchWatch)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if(p0.toString() == "" || p0.toString() == null){
+                    watchList.clear()
+                }else{
+                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    watchList.clear()
+                    watchList.addAll(searchWatch)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if(p0.toString() == "" || p0.toString() == null){
+                    watchList.clear()
 
 
-         binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
-             override fun afterTextChanged(p0: Editable?) {
+                }else{
+                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    watchList.clear()
+                    watchList.addAll(searchWatch)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+        })
 
-                 if(p0.toString() == "" || p0.toString() == null){
-                     adapter.listData.clear()
-
-                 }else{
-                     dbHelper.selectWhereWatch(p0.toString())
-                     adapter.listData.clear()
-                     adapter.listData.addAll(dbHelper.selectWhereWatch(p0.toString()))
-                     adapter.notifyDataSetChanged()
-                 }
-             }
-             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                 if(p0.toString() == "" || p0.toString() == null){
-
-                     adapter.listData.clear()
-
-                 }else{
-                     dbHelper.selectWhereWatch(p0.toString())
-                     adapter.listData.clear()
-                     adapter.listData.addAll(dbHelper.selectWhereWatch(p0.toString()))
-                     adapter.notifyDataSetChanged()
-                 }
-             }
-             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-                 if(p0.toString() == "" || p0.toString() == null){
-
-                     adapter.listData.clear()
-
-                 }else{
-                     dbHelper.selectWhereWatch(p0.toString())
-                     adapter.listData.clear()
-                     adapter.listData.addAll(dbHelper.selectWhereWatch(p0.toString()))
-                     adapter.notifyDataSetChanged()
-                 }
-             }
-         })
+        binding3.searchResult.adapter = adapter
+        binding3.searchResult.layoutManager = LinearLayoutManager(mainActivity)
 
         return binding3.root
     }
