@@ -2,8 +2,7 @@ package com.eol.memo2nd
 
 
 // 위키시스템 간략버전이라도 도입....하려면 로그인시스템 구축해야함
-
-// Room 적용 중...리싸이클러뷰 연동해서 해야함
+// Room 적용. 로그인파트도 구현하기
 
 
 import androidx.appcompat.app.AppCompatActivity
