@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Room
 import com.eol.memo2nd.databinding.WatchListFragmentBinding
-import com.eol.watch2nd.DBopenHelper
 
 class BasicFragment() : Fragment() {
 

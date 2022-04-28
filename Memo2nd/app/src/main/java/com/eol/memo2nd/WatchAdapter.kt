@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.eol.memo2nd.databinding.ItemRecyclerBinding
-import com.eol.watch2nd.DBopenHelper
 import java.text.SimpleDateFormat
 
 class WatchAdapter(var listData : List<WatchEntity>) : RecyclerView.Adapter<WatchAdapter.Holder>(){

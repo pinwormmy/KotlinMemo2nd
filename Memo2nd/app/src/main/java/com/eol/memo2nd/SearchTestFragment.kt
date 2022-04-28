@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.SearchTestBinding
-import com.eol.watch2nd.DBopenHelper
 
 class SearchTestFragment : Fragment(){
     // ViewBinding
@@ -48,7 +47,6 @@ class SearchTestFragment : Fragment(){
         }
 
         val adapter = WatchAdapter(watchList)
-        // adapter.dbHelper = dbHelper
 
         binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
 
@@ -79,8 +77,6 @@ class SearchTestFragment : Fragment(){
 
                 if(p0.toString() == "" || p0.toString() == null){
                     watchList.clear()
-
-
                 }else{
                     val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
                     watchList.clear()

@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.AddWatchBinding
-import com.eol.watch2nd.DBopenHelper
 
 class AddWatchFragment() : Fragment() {
 
     lateinit var binding: AddWatchBinding
+
+    var db : AppDataBase? = null
+    var watchList = mutableListOf<WatchEntity>()
 
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
@@ -29,34 +31,39 @@ class AddWatchFragment() : Fragment() {
 
         binding = AddWatchBinding.inflate(inflater, container, false)
 
-        /*
-        val adapter = WatchAdapter()
-        adapter.listData.addAll(dbHelper.selectWatch())
-        adapter.dbHelper = dbHelper
+        // db 초기화
+        db = AppDataBase.getInstance(mainActivity)
 
-        binding.watchListRecycler.adapter = adapter
-        binding.watchListRecycler.layoutManager = LinearLayoutManager(mainActivity)
-*/
+        val savedWatch = db!!.watchDAO().showAll()
+        if(savedWatch.isNotEmpty()){
+            watchList.addAll(savedWatch)
+        }
+
+        val adapter = WatchAdapter(watchList)
 
         binding.saveButton.setOnClickListener {
             if (binding.writeBrand.text.toString().isNotEmpty() and binding.writeNameText.text.toString().isNotEmpty()
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
-                val watch = Watch(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
+                val watch = WatchEntity(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
                     Integer.parseInt(binding.writeCaseSizeText.text.toString()),Integer.parseInt(binding.writeLugtoLugText.text.toString()), System.currentTimeMillis())
-                // dbHelper.addWatch(watch)
+                db!!.watchDAO().writeWatch(watch)
+
+                watchList.clear()
+                watchList.add(watch)
             }
-            /*
-            adapter.listData.clear()
-            adapter.listData.addAll(dbHelper.selectWatch())
 
             adapter.notifyDataSetChanged()
-            */
+
             binding.writeBrand.setText("")
             binding.writeNameText.setText("")
             binding.writeRefNumberText.setText("")
             binding.writeCaseSizeText.setText("")
             binding.writeLugtoLugText.setText("")
         }
+
+        binding.watchListRecycler.adapter = adapter
+        binding.watchListRecycler.layoutManager = LinearLayoutManager(mainActivity)
+
         return binding.root
     }
 

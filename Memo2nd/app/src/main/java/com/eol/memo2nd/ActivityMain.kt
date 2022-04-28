@@ -8,9 +8,7 @@ package com.eol.memo2nd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.ActivityMainBinding
-import com.eol.watch2nd.DBopenHelper
 
 class MainActivity : AppCompatActivity() {
 
