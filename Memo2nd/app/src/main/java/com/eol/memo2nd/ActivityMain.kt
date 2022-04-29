@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-
+/*  이 부분 레이아웃 아예 두개로 나눠서 관리
         if(auth.currentUser == null){
             binding.buttonToLogin.visibility = View.VISIBLE
             binding.buttonToLogOut.visibility = View.INVISIBLE
@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             binding.loginStatus.text = auth.currentUser?.email
         }
 
+        로그인 버튼은 회원관리 버튼으로 통합 프래그먼트 옮겨서 로그인을 하든 로그아웃하든
         binding.buttonToLogin.setOnClickListener {
             setMainFrag(0)
         }
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
             auth.signOut()
         }
-
+*/
         setMainFrag(1)
 
         binding.test1Button.setOnClickListener {
