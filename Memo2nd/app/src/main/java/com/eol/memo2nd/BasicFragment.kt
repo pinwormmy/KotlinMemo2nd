@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.WatchListFragmentBinding
 
-class BasicFragment() : Fragment() {
+class BasicFragment : Fragment() {
 
     lateinit var binding: WatchListFragmentBinding
 
@@ -25,9 +25,7 @@ class BasicFragment() : Fragment() {
         mainActivity = context as MainActivity
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        // var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,2)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
 
@@ -40,7 +38,6 @@ class BasicFragment() : Fragment() {
         }
 
         val adapter = WatchAdapter(watchList)
-        //adapter.listData.addAll(dbHelper.selectWatch())
 
         binding.recyclerMemo.adapter = adapter
         binding.recyclerMemo.layoutManager = LinearLayoutManager(mainActivity)

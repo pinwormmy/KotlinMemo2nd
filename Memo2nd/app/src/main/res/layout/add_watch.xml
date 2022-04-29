@@ -21,7 +21,6 @@
         android:layout_width="0dp"
         android:hint="Please enter the brand name"
         android:maxLines="1"
-        android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/watchListRecycler"
@@ -33,7 +32,6 @@
         android:layout_height="wrap_content"
         android:hint="Please enter the watch name"
         android:maxLines="1"
-        android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/writeBrand"
@@ -45,7 +43,6 @@
         android:layout_height="wrap_content"
         android:hint="Please enter the ref Number"
         android:maxLines="1"
-        android:inputType="textAutoComplete"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/writeNameText" />

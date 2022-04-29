@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "191086478531",
+    "project_id": "study-c97ae",
+    "storage_bucket": "study-c97ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191086478531:android:9b8f58a14e4e0b1a65ce76",
+        "android_client_info": {
+          "package_name": "com.eol.memo2nd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "191086478531-7oavs5lk84n3os5t315do8ha0k8fpup6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPboCnYNrBXcrCaBBuFimeWgforqUOdAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "191086478531-7oavs5lk84n3os5t315do8ha0k8fpup6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
