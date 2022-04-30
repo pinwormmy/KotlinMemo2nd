@@ -62,6 +62,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener {
                     result->
                 if(result.isSuccessful){
+                    Toast.makeText(mainActivity,"접속 성공",Toast.LENGTH_LONG).show()
                     activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
                 }
             }
