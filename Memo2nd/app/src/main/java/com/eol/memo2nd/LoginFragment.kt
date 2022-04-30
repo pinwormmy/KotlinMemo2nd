@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
                     if(result.isSuccessful){
                         Toast.makeText(mainActivity,"없는 이멜, 비번이라 그냥 이걸로 회원가입해드렸습니다.",Toast.LENGTH_SHORT).show()
                         if(auth.currentUser!=null){
-                            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+                            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
                         }
                     }
                     else if(result.exception?.message.isNullOrEmpty()){
@@ -62,7 +62,7 @@ class LoginFragment : Fragment() {
             .addOnCompleteListener {
                     result->
                 if(result.isSuccessful){
-                    activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
                 }
             }
     }

@@ -6,6 +6,9 @@ package com.eol.memo2nd
 // 로그인 상태랑 비로그인 상태 구분 적용해야하는데, 페이지 구성새로해야함.
 // 로그인 버튼이 아니라, 회원버튼으로 수정하고, 비로긴이면 로그인페이지, 로그인이면 회원페이지(로그아웃버튼 포함)로 이동하게
 
+// 품번입력시 디비에는 쩜빼고 등록
+// 사이즈 소수점 입력하게 자료타입 설정.
+// nullable 로해서 thickness 값도 등록하긔
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,28 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-/*  이 부분 레이아웃 아예 두개로 나눠서 관리
-        if(auth.currentUser == null){
-            binding.buttonToLogin.visibility = View.VISIBLE
-            binding.buttonToLogOut.visibility = View.INVISIBLE
-            binding.loginStatus.text = "로그인할 수도 있쥐"
-        }
-        else{
-            binding.buttonToLogin.visibility = View.INVISIBLE
-            binding.buttonToLogOut.visibility = View.VISIBLE
-            binding.loginStatus.text = auth.currentUser?.email
-        }
 
-        로그인 버튼은 회원관리 버튼으로 통합 프래그먼트 옮겨서 로그인을 하든 로그아웃하든
-        binding.buttonToLogin.setOnClickListener {
-            setMainFrag(0)
-        }
-
-        binding.buttonToLogOut.setOnClickListener {
-
-            auth.signOut()
-        }
-*/
         setMainFrag(1)
 
         binding.test1Button.setOnClickListener {
@@ -56,10 +38,14 @@ class MainActivity : AppCompatActivity() {
         binding.searchButton.setOnClickListener {
             setMainFrag(3)
         }
+        binding.buttonMyPage.setOnClickListener {
+            if(auth.currentUser == null)
+                setMainFrag(5)
+            else
+                setMainFrag(4)
 
-        binding.addWatchButton.setOnClickListener{
-            setMainFrag(4)
         }
+
     }
 
     private fun setMainFrag(fragNum : Int){
@@ -67,9 +53,6 @@ class MainActivity : AppCompatActivity() {
         val ft = supportFragmentManager.beginTransaction()
 
         when(fragNum){
-            0 -> {
-                ft.replace(R.id.mainFrame, LoginFragment()).commit()
-            }
             1 -> {
                 ft.replace(R.id.mainFrame, BasicFragment()).commit()
             }
@@ -80,7 +63,10 @@ class MainActivity : AppCompatActivity() {
                 ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
             }
             4 -> {
-                ft.replace(R.id.mainFrame, AddWatchFragment()).commit()
+                ft.replace(R.id.mainFrame, MyPageFragment()).commit()
+            }
+            5 -> {
+                ft.replace(R.id.mainFrame, LoginFragment()).commit()
             }
 
         }
