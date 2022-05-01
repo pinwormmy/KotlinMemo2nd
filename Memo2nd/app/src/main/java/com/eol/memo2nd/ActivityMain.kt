@@ -3,11 +3,12 @@ package com.eol.memo2nd
 
 // 위키시스템 간략버전이라도 도입....하려면 로그인시스템 구축해야함
 // 로그인파트는 급 firebase 적용해서 구현중
-// 계정생성 안됐었는데, 갑자기 또 돼냐?;;
+// 회원가입 따로 만들기
 
 // 품번입력시 디비에는 쩜빼고 등록
 // 사이즈 소수점 입력하게 자료타입 설정.
 // nullable 로해서 thickness 값도 등록하긔
+// 위키 시스템 연구해서 조금씩이라도 적용해보기
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

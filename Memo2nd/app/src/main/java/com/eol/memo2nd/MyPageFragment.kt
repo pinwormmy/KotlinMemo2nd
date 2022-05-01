@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eol.memo2nd.databinding.MypageFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +32,7 @@ class MyPageFragment : Fragment() {
         }
 
         binding.buttonLogout.setOnClickListener {
+            Toast.makeText(context,"접속 성공", Toast.LENGTH_LONG).show()
             auth.signOut()
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, DisplayTest1Fragment())?.commit()
         }

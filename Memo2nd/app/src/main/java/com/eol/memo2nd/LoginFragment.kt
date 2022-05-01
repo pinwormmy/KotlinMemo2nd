@@ -40,13 +40,13 @@ class LoginFragment : Fragment() {
                 .addOnCompleteListener {
                         result ->
                     if(result.isSuccessful){
-                        Toast.makeText(mainActivity,"없는 이멜, 비번이라 그냥 이걸로 회원가입해드렸습니다.",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mainActivity,"없는 이멜, 비번이라 그냥 이걸로 회원가입해드렸습니다.",Toast.LENGTH_LONG).show()
                         if(auth.currentUser!=null){
                             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
                         }
                     }
                     else if(result.exception?.message.isNullOrEmpty()){
-                        Toast.makeText(mainActivity,"입력 오류~~~~~~~~~~~~~",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mainActivity,"입력 오류~~~~~~~~~~~~~",Toast.LENGTH_LONG).show()
                     }
                     else{
                         login(email, password)
@@ -64,6 +64,9 @@ class LoginFragment : Fragment() {
                 if(result.isSuccessful){
                     Toast.makeText(mainActivity,"접속 성공",Toast.LENGTH_LONG).show()
                     activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
+                }
+                else{
+                    Toast.makeText(mainActivity,"접속 실패. 이메일과 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show()
                 }
             }
     }
