@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             setMainFrag(3)
         }
         binding.buttonMyPage.setOnClickListener {
+            // 코드 정리하기
             if(auth.currentUser == null)
                 setMainFrag(5)
             else
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun setMainFrag(fragNum : Int){
 
         val ft = supportFragmentManager.beginTransaction()
-
+        // 코틀린식으로 깔끔하게 정리하기
         when(fragNum){
             1 -> {
                 ft.replace(R.id.mainFrame, BasicFragment()).commit()
