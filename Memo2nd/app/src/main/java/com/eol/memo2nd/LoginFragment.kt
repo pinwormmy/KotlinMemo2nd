@@ -32,16 +32,6 @@ class LoginFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        /*
-        binding.buttonSignUp.setOnClickListener {
-            var email = binding.emailEt.text.toString()
-            var password = binding.pwdEt.text.toString()
-
-
-        }
-
-         */
-
         binding.buttonLogin.setOnClickListener{
             var email = binding.emailEt.text.toString()
             var password = binding.pwdEt.text.toString()
@@ -66,19 +56,5 @@ class LoginFragment : Fragment() {
             }
     }
 
-    private fun singUp(email:String, password:String){
-        auth.createUserWithEmailAndPassword(email,password) // 회원 가입
-            .addOnCompleteListener {
-                    result ->
-                if(result.isSuccessful){
-                    Toast.makeText(mainActivity,"회원가입 완료! 환영합니다~~~",Toast.LENGTH_LONG).show()
-                    if(auth.currentUser!=null){
-                        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
-                    }
-                }
-                else{
-                    Toast.makeText(mainActivity,"입력 오류~~~~이메일과 비밀번호 확인해주세요",Toast.LENGTH_LONG).show()
-                }
-            }
-    }
+
 }
