@@ -32,7 +32,7 @@ class MyPageFragment : Fragment() {
         }
 
         binding.buttonLogout.setOnClickListener {
-            Toast.makeText(context,"접속 성공", Toast.LENGTH_LONG).show()
+            Toast.makeText(context,"로그아웃하셨습니다.", Toast.LENGTH_LONG).show()
             auth.signOut()
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, DisplayTest1Fragment())?.commit()
         }

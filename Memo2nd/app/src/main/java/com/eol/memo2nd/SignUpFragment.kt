@@ -53,12 +53,10 @@ class SignUpFragment : Fragment() {
                     result ->
                 if(result.isSuccessful){
                     Toast.makeText(mainActivity,"회원가입 완료! 환영합니다~~~",Toast.LENGTH_LONG).show()
-                    if(auth.currentUser!=null){
-                        activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
-                    }
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
                 }
                 else{
-                    Toast.makeText(mainActivity,"입력 오류~~~~이메일과 비밀번호 확인해주세요",Toast.LENGTH_LONG).show()
+                    Toast.makeText(mainActivity,"회원가입 입력 오류~~~~이메일과 비밀번호 확인해주세요",Toast.LENGTH_LONG).show()
                 }
             }
     }

@@ -39,6 +39,10 @@ class LoginFragment : Fragment() {
             login(email, password)
         }
 
+        binding.buttonSignUp.setOnClickListener{
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, SignUpFragment())?.commit()
+        }
+
         return binding.root
     }
 
@@ -55,6 +59,5 @@ class LoginFragment : Fragment() {
                 }
             }
     }
-
 
 }

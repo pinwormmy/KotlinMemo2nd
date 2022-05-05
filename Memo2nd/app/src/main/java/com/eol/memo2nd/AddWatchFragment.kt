@@ -27,11 +27,8 @@ class AddWatchFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        // var dbHelper: DBopenHelper = DBopenHelper(mainActivity,"Watch",null,2)
-
         binding = AddWatchBinding.inflate(inflater, container, false)
 
-        // db 초기화
         db = AppDataBase.getInstance(mainActivity)
 
         val savedWatch = db!!.watchDAO().showAll()

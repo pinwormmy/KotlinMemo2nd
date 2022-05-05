@@ -32,10 +32,6 @@ class SearchTestFragment : Fragment(){
         // ViewBinding
         super.onCreate(savedInstanceState)
 
-
-        // val dbHelper = DBopenHelper(mainActivity,"Watch",null,2)
-
-
         binding3 = SearchTestBinding.inflate(layoutInflater)
 
         // db 초기화

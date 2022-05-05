@@ -29,7 +29,6 @@ class BasicFragment : Fragment() {
 
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
 
-        // db 초기화
         db = AppDataBase.getInstance(mainActivity)
 
         val savedWatch = db!!.watchDAO().showAll()

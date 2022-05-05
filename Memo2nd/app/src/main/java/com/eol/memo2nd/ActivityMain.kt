@@ -2,9 +2,9 @@ package com.eol.memo2nd
 
 
 // 위키시스템 간략버전이라도 도입....하려면 로그인시스템 구축해야함
-// 로그인파트는 급 firebase 적용해서 구현중
-// 회원가입 따로 만들기
+// 로그인 시스템 기본적인건 구현했는데, 이게 위키시스템이랑 연계가능한가?
 
+// DB수정 혹은 새로 생성 염두해야함.
 // 품번입력시 디비에는 쩜빼고 등록
 // 사이즈 소수점 입력하게 자료타입 설정.
 // nullable 로해서 thickness 값도 등록하긔
@@ -38,13 +38,10 @@ class MainActivity : AppCompatActivity() {
         binding.searchButton.setOnClickListener {
             setMainFrag(3)
         }
-        binding.buttonMyPage.setOnClickListener {
-            // 코드 정리하기
-            if(auth.currentUser == null)
-                setMainFrag(5)
-            else
-                setMainFrag(4)
 
+        binding.buttonMyPage.setOnClickListener {
+            if(auth.currentUser == null) setMainFrag(5)
+            else setMainFrag(4)
         }
 
     }
@@ -52,27 +49,14 @@ class MainActivity : AppCompatActivity() {
     private fun setMainFrag(fragNum : Int){
 
         val ft = supportFragmentManager.beginTransaction()
-        // 코틀린식으로 깔끔하게 정리하기
+
         when(fragNum){
-            1 -> {
-                ft.replace(R.id.mainFrame, BasicFragment()).commit()
-            }
-            2 -> {
-                ft.replace(R.id.mainFrame, DisplayTest1Fragment()).commit()
-            }
-            3 -> {
-                ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
-            }
-            4 -> {
-                ft.replace(R.id.mainFrame, MyPageFragment()).commit()
-            }
-            5 -> {
-                ft.replace(R.id.mainFrame, LoginFragment()).commit()
-            }
-
+            1 -> ft.replace(R.id.mainFrame, BasicFragment()).commit()
+            2 -> ft.replace(R.id.mainFrame, DisplayTest1Fragment()).commit()
+            3 -> ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
+            4 -> ft.replace(R.id.mainFrame, MyPageFragment()).commit()
+            5 -> ft.replace(R.id.mainFrame, LoginFragment()).commit()
         }
-
-
     }
 
 }
