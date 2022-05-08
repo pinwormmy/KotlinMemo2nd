@@ -32,17 +32,19 @@ class AddWatchFragment() : Fragment() {
         db = AppDataBase.getInstance(mainActivity)
 
         val savedWatch = db!!.watchDAO().showAll()
-        if(savedWatch.isNotEmpty()){
-            watchList.addAll(savedWatch)
-        }
+
+        if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
 
         val adapter = WatchAdapter(watchList)
 
         binding.saveButton.setOnClickListener {
+            // 이 부분 문법 확인하고 정리
             if (binding.writeBrand.text.toString().isNotEmpty() and binding.writeNameText.text.toString().isNotEmpty()
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
+
                 val watch = WatchEntity(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
                     Integer.parseInt(binding.writeCaseSizeText.text.toString()),Integer.parseInt(binding.writeLugtoLugText.text.toString()), System.currentTimeMillis())
+
                 db!!.watchDAO().writeWatch(watch)
 
                 watchList.clear()
@@ -63,5 +65,4 @@ class AddWatchFragment() : Fragment() {
 
         return binding.root
     }
-
 }
