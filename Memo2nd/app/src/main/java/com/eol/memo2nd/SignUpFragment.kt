@@ -30,9 +30,7 @@ class SignUpFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = SignupFragmentBinding.inflate(inflater, container, false)
-
         auth = FirebaseAuth.getInstance()
-
 
         binding.buttonSignUp.setOnClickListener {
             var email = binding.editEmail.text.toString()
@@ -42,10 +40,8 @@ class SignUpFragment : Fragment() {
             if (password == password2) singUp(email, password)
             else Toast.makeText(mainActivity,"비밀번호 두 번 입력 똑같이 해주세요",Toast.LENGTH_LONG).show()
         }
-
         return binding.root
     }
-
 
     private fun singUp(email:String, password:String){
         auth.createUserWithEmailAndPassword(email,password) // 회원 가입

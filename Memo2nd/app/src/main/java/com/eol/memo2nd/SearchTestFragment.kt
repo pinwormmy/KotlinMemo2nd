@@ -15,11 +15,12 @@ class SearchTestFragment : Fragment(){
     // ViewBinding
     private lateinit var binding3 : SearchTestBinding
 
+    var db : AppDataBase? = null
+
+    var watchList = mutableListOf<WatchEntity>()
+
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
-
-    var db : AppDataBase? = null
-    var watchList = mutableListOf<WatchEntity>()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -29,23 +30,20 @@ class SearchTestFragment : Fragment(){
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // ViewBinding
+
         super.onCreate(savedInstanceState)
 
         binding3 = SearchTestBinding.inflate(layoutInflater)
 
-        // db 초기화
         db = AppDataBase.getInstance(mainActivity)
 
         val savedWatch = db!!.watchDAO().showAll()
-        if(savedWatch.isNotEmpty()){
-            watchList.addAll(savedWatch)
-        }
-
+        if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
         val adapter = WatchAdapter(watchList)
 
         binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
 
+            // 반복되는 문구 함수로 빼기
             override fun afterTextChanged(p0: Editable?) {
 
                 if(p0.toString() == "" || p0.toString() == null){
