@@ -6,6 +6,8 @@ package com.eol.memo2nd
 // 그래서, DB개편이 필요한데, room 새 버전할지, 아니면 firebase 쓸지, 위키시스템과 DB연계 상황을 보고 결정
 // 그래서 위키시스템 어떻게 구성할지부터 결정해야함. 정정요청시스템에 따로 db구조 바꿀 필요없으면 그대로 간다
 
+// 디비부분 문법 정리.(싱글톤? 컨텍스트 구문 관리)
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.eol.memo2nd.databinding.ActivityMainBinding
