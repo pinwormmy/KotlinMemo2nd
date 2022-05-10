@@ -23,17 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-
+        // 문법 확인
         setMainFrag(1)
-
-        binding.test1Button.setOnClickListener {
-            setMainFrag(2)
-        }
-
-        binding.searchButton.setOnClickListener {
-            setMainFrag(3)
-        }
-
+        binding.test1Button.setOnClickListener{setMainFrag(2)}
+        binding.searchButton.setOnClickListener{setMainFrag(3)}
         binding.buttonMyPage.setOnClickListener {
             if(auth.currentUser == null) setMainFrag(5)
             else setMainFrag(4)
