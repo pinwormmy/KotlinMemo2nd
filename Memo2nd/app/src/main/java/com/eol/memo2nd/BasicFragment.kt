@@ -28,14 +28,10 @@ class BasicFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         binding = WatchListFragmentBinding.inflate(inflater, container, false)
-
         db = AppDataBase.getInstance(mainActivity)
 
         val savedWatch = db!!.watchDAO().showAll()
-        if(savedWatch.isNotEmpty()){
-            watchList.addAll(savedWatch)
-        }
-
+        if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
         val adapter = WatchAdapter(watchList)
 
         binding.recyclerMemo.adapter = adapter
