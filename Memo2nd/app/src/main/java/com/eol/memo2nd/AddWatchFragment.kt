@@ -28,13 +28,10 @@ class AddWatchFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = AddWatchBinding.inflate(inflater, container, false)
-
         db = AppDataBase.getInstance(mainActivity)
-
         val savedWatch = db!!.watchDAO().showAll()
 
         if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
-
         val adapter = WatchAdapter(watchList)
 
         binding.saveButton.setOnClickListener {

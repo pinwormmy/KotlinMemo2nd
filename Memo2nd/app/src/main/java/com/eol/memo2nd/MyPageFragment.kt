@@ -43,7 +43,6 @@ class MyPageFragment : Fragment() {
             else
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, AddWatchFragment())?.commit()
         }
-
         return binding.root
     }
 }

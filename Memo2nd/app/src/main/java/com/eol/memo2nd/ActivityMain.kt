@@ -1,6 +1,7 @@
 package com.eol.memo2nd
 
 // 이전에 구글 로그인 적용해보긔 - 생각보다 적용 코드가 까다롭다? 공부 좀 하고 적용하긔
+
 // 품번입력시 디비에는 쩜이랑 특문 빼고 등록하게끔(아니면 알아서 제외시켜 등록하는쪽으로) <- 이거 어떻게 처리할거야
 // 사이즈 소수점 입력하게 자료타입 설정. nullable 로해서 thickness 값도 등록하긔
 // 그래서, DB개편이 필요한데, room 새 버전할지, 아니면 firebase 쓸지, 위키시스템과 DB연계 상황을 보고 결정
@@ -31,13 +32,11 @@ class MainActivity : AppCompatActivity() {
             if(auth.currentUser == null) setMainFrag(5)
             else setMainFrag(4)
         }
-
     }
 
     private fun setMainFrag(fragNum : Int){
 
         val ft = supportFragmentManager.beginTransaction()
-
         when(fragNum){
             1 -> ft.replace(R.id.mainFrame, BasicFragment()).commit()
             2 -> ft.replace(R.id.mainFrame, DisplayTest1Fragment()).commit()

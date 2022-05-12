@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth
 class LoginFragment : Fragment() {
 
     lateinit var binding: LoginFragmentBinding
-
     lateinit var auth: FirebaseAuth
 
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
@@ -29,7 +28,6 @@ class LoginFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = LoginFragmentBinding.inflate(inflater, container, false)
-
         auth = FirebaseAuth.getInstance()
 
         binding.buttonLogin.setOnClickListener{
@@ -38,11 +36,9 @@ class LoginFragment : Fragment() {
 
             login(email, password)
         }
-
         binding.buttonSignUp.setOnClickListener{
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, SignUpFragment())?.commit()
         }
-
         return binding.root
     }
 
