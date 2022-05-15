@@ -19,12 +19,12 @@ class SearchTestFragment : Fragment(){
 
     var watchList = mutableListOf<WatchEntity>()
 
-    // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
+    // 1. 컨텍스트를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        // 2. Context를 액티비티로 형변환해서 할당
+        // 2. 컨텍스트를 액티비티로 형변환해서 할당
         mainActivity = context as MainActivity
     }
 
@@ -79,7 +79,6 @@ class SearchTestFragment : Fragment(){
                 }
             }
         })
-
         binding3.searchResult.adapter = adapter
         binding3.searchResult.layoutManager = LinearLayoutManager(mainActivity)
 
