@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.eol.memo2nd.databinding.LoginFragmentBinding
 import com.eol.memo2nd.databinding.WatchListFragmentBinding
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
@@ -25,10 +26,27 @@ class LoginFragment : Fragment() {
         mainActivity = context as MainActivity
     }
 
+    /*
+    val signInRequest = BeginSignInRequest.builder()
+        .setGoogleIdTokenRequestOptions(
+            BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
+                .setSupported(true)
+                // Your server's client ID, not your Android client ID.
+                .setServerClientId(getString(R.string.default_web_client_id))
+                // Only show accounts previously used to sign in.
+                .setFilterByAuthorizedAccounts(true)
+                .build()
+        )
+        .build()
+*/
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = LoginFragmentBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
+
+
 
         binding.buttonLogin.setOnClickListener{
             var email = binding.emailEt.text.toString()
