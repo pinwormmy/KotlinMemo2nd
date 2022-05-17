@@ -25,8 +25,8 @@ class LoginFragment : Fragment() {
         // 2. Context를 액티비티로 형변환해서 할당
         mainActivity = context as MainActivity
     }
-
-    /*
+/*
+클라이언트 아이디 찾아서 다시 수정
     val signInRequest = BeginSignInRequest.builder()
         .setGoogleIdTokenRequestOptions(
             BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
