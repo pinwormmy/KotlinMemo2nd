@@ -28,7 +28,7 @@ class MyPageFragment : Fragment() {
         else{
             binding.buttonLogin.visibility = View.INVISIBLE
             binding.buttonLogout.visibility = View.VISIBLE
-            binding.memberView.text = auth.currentUser?.email + ":: Logging in~!"
+            binding.memberView.text = auth.currentUser?.email + ":: Logging in~!" + auth.currentUser?.displayName
         }
 
         binding.buttonLogout.setOnClickListener {
