@@ -1,7 +1,9 @@
 package com.eol.memo2nd
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +12,17 @@ import androidx.fragment.app.Fragment
 import com.eol.memo2nd.databinding.LoginFragmentBinding
 import com.eol.memo2nd.databinding.WatchListFragmentBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: LoginFragmentBinding
     lateinit var auth: FirebaseAuth
+    private val RC_SIGN_IN = 8922
 
     // 1. Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
@@ -25,28 +32,25 @@ class LoginFragment : Fragment() {
         // 2. Context를 액티비티로 형변환해서 할당
         mainActivity = context as MainActivity
     }
-/*
-클라이언트 아이디 찾아서 다시 수정
-    val signInRequest = BeginSignInRequest.builder()
-        .setGoogleIdTokenRequestOptions(
-            BeginSignInRequest.GoogleIdTokenRequestOptions.builder()
-                .setSupported(true)
-                // Your server's client ID, not your Android client ID.
-                .setServerClientId(getString(R.string.default_web_client_id))
-                // Only show accounts previously used to sign in.
-                .setFilterByAuthorizedAccounts(true)
-                .build()
-        )
-        .build()
-*/
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = LoginFragmentBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
 
+        // 구글로그인
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("191086478531-7oavs5lk84n3os5t315do8ha0k8fpup6.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
 
+        var googleSignInClient = GoogleSignIn.getClient(mainActivity, gso)
+
+        binding.buttonGoogleLogin.setOnClickListener{
+            val signInIntent = googleSignInClient.signInIntent
+
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
 
         binding.buttonLogin.setOnClickListener{
             var email = binding.emailEt.text.toString()
@@ -58,6 +62,35 @@ class LoginFragment : Fragment() {
             activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, SignUpFragment())?.commit()
         }
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == RC_SIGN_IN){
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try{
+                val account = task.getResult(ApiException::class.java)!!
+                firebaseAuthWithGoogle(account.idToken!!)
+            }catch (e: ApiException){
+                Toast.makeText(mainActivity,"접속 실패. 구글 계정 연동확인",Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(mainActivity){ task ->
+                if(task.isSuccessful){
+                    val user = auth.currentUser
+                    Log.d("구글로그인 성공", user.toString())
+                    activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.mainFrame, MyPageFragment())?.commit()
+                }else{
+                    Log.d("구글로그인 실패", "signInWithCredential:failure", task.exception)
+                }
+
+            }
     }
 
     private fun login(email:String, password:String){
