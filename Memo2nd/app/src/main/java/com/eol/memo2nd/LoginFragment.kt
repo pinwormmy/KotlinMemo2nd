@@ -54,6 +54,8 @@ class LoginFragment : Fragment() {
 
         binding.buttonLogin.setOnClickListener{
             var email = binding.emailEt.text.toString()
+
+
             var password = binding.pwdEt.text.toString()
 
             login(email, password)
