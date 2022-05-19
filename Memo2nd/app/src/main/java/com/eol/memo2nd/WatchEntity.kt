@@ -8,11 +8,14 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "watchSize")
 data class WatchEntity(
-    @PrimaryKey(autoGenerate = true) val watchId:Long?,
+    @PrimaryKey(autoGenerate = true)
+    val watchId:Long?,
     var brand:String,
     var collectionName:String,
-    var refNumber:String,
-    var caseSize:Int,
-    var lugTolugSize:Int,
+    var refNumber:String?,
+    var caseSize:Double?,
+    var lugTolugSize:Double?,
+    var thickness:Double?,
+    var writer:String?,
     var dateTime:Long
 )

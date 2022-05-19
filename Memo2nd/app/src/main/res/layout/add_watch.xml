@@ -55,9 +55,9 @@
         android:id="@+id/writeCaseSizeText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="case size"
+        android:hint="Case"
         android:maxLines="1"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/writeLugtoLugText"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,11 +67,23 @@
         android:id="@+id/writeLugtoLugText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="lug to lug"
+        android:hint="LugToLug"
         android:maxLines="1"
-        android:inputType="number"
-        app:layout_constraintEnd_toStartOf="@+id/saveButton"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/writeThicknessText"
         app:layout_constraintStart_toEndOf="@id/writeCaseSizeText"
+        app:layout_constraintTop_toBottomOf="@id/writeRefNumberText"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <EditText
+        android:id="@+id/writeThicknessText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Thickness"
+        android:maxLines="1"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/saveButton"
+        app:layout_constraintStart_toEndOf="@id/writeLugtoLugText"
         app:layout_constraintTop_toBottomOf="@id/writeRefNumberText"
         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -79,9 +91,9 @@
         android:id="@+id/saveButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="add watch"
+        android:text="add"
         app:layout_constraintTop_toBottomOf="@+id/writeRefNumberText"
-        app:layout_constraintStart_toEndOf="@id/writeLugtoLugText"
+        app:layout_constraintStart_toEndOf="@id/writeThicknessText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 

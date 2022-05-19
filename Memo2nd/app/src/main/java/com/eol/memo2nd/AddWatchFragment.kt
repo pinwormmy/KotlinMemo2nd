@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.AddWatchBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class AddWatchFragment() : Fragment() {
 
     lateinit var binding: AddWatchBinding
+    lateinit var auth: FirebaseAuth
 
     var db : AppDataBase? = null
     var watchList = mutableListOf<WatchEntity>()
@@ -28,8 +30,10 @@ class AddWatchFragment() : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = AddWatchBinding.inflate(inflater, container, false)
+        auth = FirebaseAuth.getInstance()
         db = AppDataBase.getInstance(mainActivity)
         val savedWatch = db!!.watchDAO().showAll()
+
 
         if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
         val adapter = WatchAdapter(watchList)
@@ -40,14 +44,13 @@ class AddWatchFragment() : Fragment() {
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
 
                 val watch = WatchEntity(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
-                    Integer.parseInt(binding.writeCaseSizeText.text.toString()),Integer.parseInt(binding.writeLugtoLugText.text.toString()), System.currentTimeMillis())
+                    binding.writeCaseSizeText.text.toString().toDoubleOrNull(),binding.writeLugtoLugText.text.toString().toDoubleOrNull(),
+                    binding.writeThicknessText.toString().toDoubleOrNull(), auth.currentUser?.email, System.currentTimeMillis())
 
                 db!!.watchDAO().writeWatch(watch)
-
                 watchList.clear()
                 watchList.add(watch)
             }
-
             adapter.notifyDataSetChanged()
 
             binding.writeBrand.setText("")
@@ -55,8 +58,8 @@ class AddWatchFragment() : Fragment() {
             binding.writeRefNumberText.setText("")
             binding.writeCaseSizeText.setText("")
             binding.writeLugtoLugText.setText("")
+            binding.writeLugtoLugText.setText("")
         }
-
         binding.watchListRecycler.adapter = adapter
         binding.watchListRecycler.layoutManager = LinearLayoutManager(mainActivity)
 
