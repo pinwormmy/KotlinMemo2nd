@@ -8,9 +8,9 @@ import androidx.room.RoomDatabase
 // 오토마이그레이션 안되는 항목인듯.(컬럼 타입 변경) 다시 수정!!
 @Database(
     version = 2,
-    entities = [ WatchEntity.class ],
+    entities = [ WatchEntity::class ],
     autoMigrations = [
-        @AutoMigration (from = 1, to = 2)
+        AutoMigration (from = 1, to = 2)
     ]
 )
 abstract class AppDataBase : RoomDatabase() {
