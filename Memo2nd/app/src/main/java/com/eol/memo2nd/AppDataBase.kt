@@ -5,13 +5,12 @@ import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-// 오토마이그레이션 안되는 항목인듯.(컬럼 타입 변경) 다시 수정!!
+// 수동 마이그레이션 추가해서 다시 수정
+// 마이그레이션 안되면 db새로 생성 (버전 업데이트때문에 안될 수 있어서)
+
 @Database(
     version = 2,
-    entities = [ WatchEntity::class ],
-    autoMigrations = [
-        AutoMigration (from = 1, to = 2)
-    ]
+    entities = [ WatchEntity::class ]
 )
 abstract class AppDataBase : RoomDatabase() {
     abstract fun watchDAO() : WatchSizeDAO
@@ -33,3 +32,4 @@ abstract class AppDataBase : RoomDatabase() {
         }
     }
 }
+

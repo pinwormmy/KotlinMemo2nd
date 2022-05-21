@@ -43,9 +43,15 @@ class AddWatchFragment() : Fragment() {
             if (binding.writeBrand.text.toString().isNotEmpty() and binding.writeNameText.text.toString().isNotEmpty()
                 and binding.writeCaseSizeText.text.isNotEmpty() and binding.writeLugtoLugText.text.isNotEmpty()) {
 
-                val watch = WatchEntity(null, binding.writeBrand.text.toString(), binding.writeNameText.text.toString(), binding.writeRefNumberText.text.toString(),
-                    binding.writeCaseSizeText.text.toString().toDoubleOrNull(),binding.writeLugtoLugText.text.toString().toDoubleOrNull(),
-                    binding.writeThicknessText.toString().toDoubleOrNull(), auth.currentUser?.email, System.currentTimeMillis())
+                val watch = WatchEntity(null,
+                    binding.writeBrand.text.toString(),
+                    binding.writeNameText.text.toString(),
+                    binding.writeRefNumberText.text.toString(),
+                    binding.writeCaseSizeText.text.toString().toDoubleOrNull(),
+                    binding.writeLugtoLugText.text.toString().toDoubleOrNull(),
+                    binding.writeThicknessText.toString().toDoubleOrNull(),
+                    auth.currentUser?.email,
+                    System.currentTimeMillis())
 
                 db!!.watchDAO().writeWatch(watch)
                 watchList.clear()
@@ -58,7 +64,7 @@ class AddWatchFragment() : Fragment() {
             binding.writeRefNumberText.setText("")
             binding.writeCaseSizeText.setText("")
             binding.writeLugtoLugText.setText("")
-            binding.writeLugtoLugText.setText("")
+            binding.writeThicknessText.setText("")
         }
         binding.watchListRecycler.adapter = adapter
         binding.watchListRecycler.layoutManager = LinearLayoutManager(mainActivity)
