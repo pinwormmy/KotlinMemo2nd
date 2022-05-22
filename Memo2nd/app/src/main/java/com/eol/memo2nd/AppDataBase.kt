@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 // 마이그레이션 안되면 db새로 생성 (버전 업데이트때문에 안될 수 있어서)
 
 @Database(
-    version = 2,
+    version = 2, // 수정해야함
     entities = [ WatchEntity::class ]
 )
 abstract class AppDataBase : RoomDatabase() {
