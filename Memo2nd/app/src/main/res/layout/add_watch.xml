@@ -45,6 +45,7 @@
         android:layout_height="wrap_content"
         android:hint="Please enter the ref Number"
         android:maxLines="1"
+        android:digits="0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         android:inputType="textAutoComplete"
         app:layout_constraintBottom_toTopOf="@id/writeLugtoLugText"
         app:layout_constraintEnd_toEndOf="parent"

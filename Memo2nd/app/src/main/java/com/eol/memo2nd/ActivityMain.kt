@@ -1,8 +1,7 @@
 package com.eol.memo2nd
 
 // db 수정 중(마이그레이션해야하는데 버벅대는중;)
-// 품번입력시 디비에는 쩜이랑 특문 빼고 등록하게끔(아니면 알아서 제외시켜 등록하는쪽으로) <- 이거 어떻게 처리할거야
-// 현상태에선 파이어베이스랑 룸 디비 같이 쓰는걸로 진행 예정.
+// 품번입력시 디비에는 쩜이랑 특문 빼고 등록하게끔 XML DIGIT 옵션 넣었는데 확인해보기
 
 
 import androidx.appcompat.app.AppCompatActivity
