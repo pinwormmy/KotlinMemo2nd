@@ -8,10 +8,10 @@ import androidx.room.Query
 @Dao
 interface WatchSizeDAO {
 
-    @Query("SELECT * FROM watchSize")
+    @Query("SELECT * FROM watchData")
     fun showAll(): List<WatchEntity>
 
-    @Query("SELECT * FROM watchSize WHERE (brand || collectionName || refNumber) like '%' || :keyword || '%'")
+    @Query("SELECT * FROM watchData WHERE (brand || collectionName || refNumber) like '%' || :keyword || '%'")
     fun showSearch(keyword: String) : List<WatchEntity>
 
     @Insert

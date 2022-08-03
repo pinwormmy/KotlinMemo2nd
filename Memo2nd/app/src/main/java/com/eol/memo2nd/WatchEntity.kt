@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 // 사이즈 소수점 입력하게 자료타입 설정. nullable 로해서 thickness 값도 등록하긔
 // 위키시스템에 필요한 컬럼 고려해서 추가
 
-@Entity(tableName = "watchSize")
+@Entity(tableName = "watchData")
 data class WatchEntity(
     @PrimaryKey(autoGenerate = true)
     val watchId:Long?,
