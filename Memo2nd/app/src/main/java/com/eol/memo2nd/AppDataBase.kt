@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 
 
 @Database(
-    version = 1, // 수정해야함
+    version = 1,
     entities = [ WatchEntity::class ]
 )
 abstract class AppDataBase : RoomDatabase() {

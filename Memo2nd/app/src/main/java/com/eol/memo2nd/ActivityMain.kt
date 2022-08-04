@@ -1,8 +1,8 @@
 package com.eol.memo2nd
 
-// db 수정 중(마이그레이션해야하는데 다른 일때미 자꾸 지연 중...)
-
-// 품번입력시 디비에는 쩜이랑 특문 빼고 등록하게끔 XML DIGIT 옵션 넣었는데 확인해보기
+// 카메라 연동 (카메라 키기 - 찍기 - 찍은 파일 디비에 바로 넣기)
+// 이미지(카메라 촬영본) 위에 표시 기능
+// 디비 마이그레이션
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
