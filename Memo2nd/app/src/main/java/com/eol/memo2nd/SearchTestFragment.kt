@@ -13,7 +13,7 @@ import com.eol.memo2nd.databinding.SearchTestBinding
 
 class SearchTestFragment : Fragment(){
     // ViewBinding
-    private lateinit var binding3 : SearchTestBinding
+    private lateinit var binding : SearchTestBinding
 
     var db : AppDataBase? = null
 
@@ -33,7 +33,7 @@ class SearchTestFragment : Fragment(){
 
         super.onCreate(savedInstanceState)
 
-        binding3 = SearchTestBinding.inflate(layoutInflater)
+        binding = SearchTestBinding.inflate(layoutInflater)
 
         db = AppDataBase.getInstance(mainActivity)
 
@@ -41,7 +41,7 @@ class SearchTestFragment : Fragment(){
         if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
         val adapter = WatchAdapter(watchList)
 
-        binding3.searchBarTest.addTextChangedListener(object : TextWatcher {
+        binding.searchBarTest.addTextChangedListener(object : TextWatcher {
 
             // 반복되는 문구 함수로 빼기
             override fun afterTextChanged(p0: Editable?) {
@@ -49,7 +49,7 @@ class SearchTestFragment : Fragment(){
                 if(p0.toString() == "" || p0.toString() == null){
                     watchList.clear()
                 }else{
-                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    val searchWatch = db!!.watchDAO().showSearch(p0.toString())
                     watchList.clear()
                     watchList.addAll(searchWatch)
                     adapter.notifyDataSetChanged()
@@ -61,7 +61,7 @@ class SearchTestFragment : Fragment(){
                 if(p0.toString() == "" || p0.toString() == null){
                     watchList.clear()
                 }else{
-                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    val searchWatch = db!!.watchDAO().showSearch(p0.toString())
                     watchList.clear()
                     watchList.addAll(searchWatch)
                     adapter.notifyDataSetChanged()
@@ -72,16 +72,16 @@ class SearchTestFragment : Fragment(){
                 if(p0.toString() == "" || p0.toString() == null){
                     watchList.clear()
                 }else{
-                    val searchWatch = db!!.watchDAO()?.showSearch(p0.toString())
+                    val searchWatch = db!!.watchDAO().showSearch(p0.toString())
                     watchList.clear()
                     watchList.addAll(searchWatch)
                     adapter.notifyDataSetChanged()
                 }
             }
         })
-        binding3.searchResult.adapter = adapter
-        binding3.searchResult.layoutManager = LinearLayoutManager(mainActivity)
+        binding.searchResult.adapter = adapter
+        binding.searchResult.layoutManager = LinearLayoutManager(mainActivity)
 
-        return binding3.root
+        return binding.root
     }
 }
