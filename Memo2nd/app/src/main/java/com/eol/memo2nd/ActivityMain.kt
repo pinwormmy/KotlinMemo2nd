@@ -25,9 +25,10 @@ class MainActivity : AppCompatActivity() {
         setMainFrag(1)
         binding.test1Button.setOnClickListener{setMainFrag(2)}
         binding.searchButton.setOnClickListener{setMainFrag(3)}
+        binding.btnCamera.setOnClickListener{setMainFrag(4)}
         binding.buttonMyPage.setOnClickListener {
             if(auth.currentUser == null) setMainFrag(5)
-            else setMainFrag(4)
+            else setMainFrag(6)
         }
     }
 
@@ -38,8 +39,9 @@ class MainActivity : AppCompatActivity() {
             1 -> ft.replace(R.id.mainFrame, BasicFragment()).commit()
             2 -> ft.replace(R.id.mainFrame, DisplayTest1Fragment()).commit()
             3 -> ft.replace(R.id.mainFrame, SearchTestFragment()).commit()
-            4 -> ft.replace(R.id.mainFrame, MyPageFragment()).commit()
+            4 -> ft.replace(R.id.mainFrame, CameraFragment()).commit()
             5 -> ft.replace(R.id.mainFrame, LoginFragment()).commit()
+            6 -> ft.replace(R.id.mainFrame, MyPageFragment()).commit()
         }
     }
 }
