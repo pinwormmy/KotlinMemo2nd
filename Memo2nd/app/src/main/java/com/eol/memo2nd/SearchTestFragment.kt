@@ -1,15 +1,23 @@
 package com.eol.memo2nd
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eol.memo2nd.databinding.SearchTestBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
+import com.google.firebase.ktx.Firebase
 
 class SearchTestFragment : Fragment(){
     // ViewBinding
@@ -41,7 +49,28 @@ class SearchTestFragment : Fragment(){
         if(savedWatch.isNotEmpty()) watchList.addAll(savedWatch)
         val adapter = WatchAdapter(watchList)
 
+        val database = Firebase.database
+        val myRef = database.getReference("message")
+
+        myRef.setValue("Hello, World!")
+
+        // Read from the database
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                val value = dataSnapshot.getValue<String>()
+                Log.d(TAG, "Value is: $value")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException())
+            }
+        })
+
         binding.searchBarTest.addTextChangedListener(object : TextWatcher {
+
 
             // 반복되는 문구 함수로 빼기
             override fun afterTextChanged(p0: Editable?) {

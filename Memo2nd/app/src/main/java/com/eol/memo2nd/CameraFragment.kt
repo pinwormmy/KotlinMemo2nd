@@ -18,7 +18,6 @@ import androidx.camera.video.*
 import androidx.camera.video.VideoCapture
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.eol.memo2nd.databinding.CameraFragmentBinding
 import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
@@ -29,7 +28,7 @@ import java.util.concurrent.Executors
 typealias LumaListener = (luma: Double) -> Unit
 
 
-class CameraFragment : Fragment() {
+class CameraFragment : androidx.fragment.app.Fragment() {
 
     // Context를 할당할 변수를 프로퍼티로 선언(어디서든 사용할 수 있게)
     private lateinit var mainActivity: MainActivity
@@ -78,7 +77,7 @@ class CameraFragment : Fragment() {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
             put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
             if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
+                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image") // 사진 저장 폴더
             }
         }
 
@@ -102,7 +101,7 @@ class CameraFragment : Fragment() {
                 override fun
                         onImageSaved(output: ImageCapture.OutputFileResults){
                     val msg = "사진 촬영 성공 : ${output.savedUri}"
-                    Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(mainActivity, msg, Toast.LENGTH_SHORT).show() // 이 시점에서 촬영한 사진 어플 안에서 열리도록 짜야됨
                     Log.d(TAG, msg)
                 }
             }

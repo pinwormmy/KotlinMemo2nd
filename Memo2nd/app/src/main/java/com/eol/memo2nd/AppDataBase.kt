@@ -5,8 +5,6 @@ import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-// 디비 새로 파기
-
 
 @Database(
     version = 1,
